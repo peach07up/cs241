@@ -1,0 +1,93 @@
+System code too hot. Angrave 4/29/16. 
+Draft v0.0002
+ 
+This byte, that c char
+malloc heap, that lstat mode
+This byte for them POSIX calls
+Them blockin' calls straight mutex locks
+Schedulin', while I'm coding up in the city
+Got threads on with that Lawrence
+Gotta kiss my code it so pretty
+
+Too hot (hot damn)
+Called cond_wait and I don't need man
+Too hot (hot damn)
+Make a CPU wanna run a full speed fan
+
+Too hot (hot damn)
+Exec my code don't convoy my I/O
+Too hot (hot damn)
+
+am I bad bout that concurrency, deadlock down
+mmap hit your address space (root!) x3
+'cause sys code gonna exec to you x3
+
+Saturday night and we in the lab
+don't believe me just code (code on)
+don't believe me just code uh
+don't believe me just code x4
+
+pass pass fail oh
+stop, block a nanosec
+Filled my heap put some variables in it
+Smashed a stack, hash a coin
+TCP, get the socket
+Send to Harlem, Hollywood
+getaddrinfo to port mississippi
+if we SYN up, you SYN-ACK right back
+smoother than a syn flood storm
+Too hot (hot damn)
+
+Called cond_wait and I don't need man
+Too hot (hot damn)
+Make a CPU wanna run a full speed fan
+Too hot (hot damn)
+
+Exec my code don't convoy my I/O
+Too hot (hot damn)
+
+Am I bad bout that concurrency, break it down
+mmap hit your address space (root) 
+'cause system code gonna exec it to you x3
+mmap hit your address space (root) x3
+cause system code gonna exec it to you x3
+Saturday night and we in the lab
+don't believe me just code (code on)
+don't believe me just code uh
+
+before we exit
+let me mount a file system for you
+Illinois sys funk you up x3
+Illinois sys funk you up (huh)
+I said system code compile you up 
+
+Illinois sys 'pile you up
+Illinois sys compile you up x3
+
+Generate, deliver, handle that sig
+If you sigint then handle it
+If you fork then sig child it
+Don't brag about it, come show me
+Come on code
+jump on it
+If you really care then action it
+
+Saturday night and we in the lab
+don't believe me just code (code on)
+don't believe me just code uh x3
+don't believe me just code x2
+pass, pass, pass oh!
+
+
+Illinois sys compile you up
+Illinois sys compile you up ('pile what?)
+
+Illinois sys compile you up x3
+Illinois sys compile you up ('pile what?)
+
+Illinois sys compile you up x3
+Illinois sys compile you up ('pile what?)
+
+Illinois sys compile you up x3
+Illinois sys compile you up ('pile what?)
+Illinois sys compile you up

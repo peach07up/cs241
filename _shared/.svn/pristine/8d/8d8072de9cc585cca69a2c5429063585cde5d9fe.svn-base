@@ -1,0 +1,16 @@
+We will start with a CDRom image
+I used the 50MB image from DamnSmallLinux-
+http://distro.ibiblio.org/damnsmall/current/
+
+Install qemu (google...)
+VirtualBox is another alternative
+
+You will need an X11 display and enable X forwarding
+(On OSX I installed Quartz; on Windows use cygwin)
+
+Use xclock/xeyes to verify X11 can use your display
+
+qemu-system-x86_64 -k en-us -cdrom dsl-4.4.10.iso
+
+
+Note. I tested this with an Ubuntu VM as the host. It was slow because no hypervisor acceleration was available.

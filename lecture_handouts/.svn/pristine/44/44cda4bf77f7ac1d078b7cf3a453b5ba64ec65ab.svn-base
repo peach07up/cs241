@@ -1,0 +1,19 @@
+At least one resource must be held in a non-shareable mode
+
+"A process is currently holding at least one resource and requesting additional resources which are being held by other processes."
+
+"A resource can be released only voluntarily by the process holding it, after that process has completed its task"
+
+"There is a set of waiting processes, such that P1 is waiting for a resource held by P2, P2 is waiting for a resource held by P3 and so on until PN is waiting for a resource held by P1."
+
+Mutual Exclusion. Hold and Wait. No pre-emption. Circular Wait (in WaitFor Graph)
+
+Deadlock: A state in which no progress can be made. II A pdevice (process/thread//machine etc) waits for an event that will never arrive
+
+while(writers) block. Later if writers>0 wake one up
+while(writing || reading) block. (dont block on readers -otherwise deadlock).
+Later broadcast to readers or signal to another writer
+
+P1 grabs the chocolate! Arrow goes FROM the candy to P1
+Wait for: From Px To the resource box
+https://github.com/angrave/SystemProgramming/wiki/Deadlock%2C-Part-1%3A-Resource-Allocation-Graph

@@ -1,0 +1,13 @@
+# Timing results for basic primality tester
+# One run only
+# Air: MacBook Air, early 2012, 2 cores each with 2 virtual cores
+# linux: 8 cores
+# number of threads    real run time (sec): MacBook Air,  linux.ews.illinois.edu
+1 29.521 27.476
+2 16.752 13.778
+3 15.781 9.211
+4 14.766 6.912
+5 15.025 5.674
+6 15.003 4.646
+7 14.768 3.996
+8 14.832 3.555
