@@ -1,0 +1,188 @@
+[
+  {
+    "timestamp": "2016-03-01 13:27:41.018981", 
+    "testcases": [
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test queue, push and pull large amounts of data", 
+        "name": "test_queue", 
+        "log": "Timed Out!"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test queue, queue size doesn't exceed max capacity", 
+        "name": "test_queue_maxSize", 
+        "log": "Queue has incorrect capacity!\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test semamore in rendezvous.c", 
+        "name": "test_semamore", 
+        "log": "Test Failed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test semamore init function", 
+        "name": "test_semamore_init", 
+        "log": "Test Failed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test semamore wait", 
+        "name": "test_semamore_wait_simple", 
+        "log": "Test Failed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test that semamore wait blocks", 
+        "name": "test_semamore_wait_block", 
+        "log": "Test Failed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test semamore post", 
+        "name": "test_semamore_post_simple", 
+        "log": "Test Failed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test that semamore post blocks", 
+        "name": "test_semamore_post_block", 
+        "log": "Test Failed"
+      }
+    ], 
+    "revision": "(Pull Time: 2016-03-03 | Revision # 38096)"
+  }, 
+  {
+    "timestamp": "2016-03-02 11:10:36.071620", 
+    "testcases": [
+      {
+        "description": "Test queue, push and pull large amounts of data", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nqueue.c: In function \u2018queue_init\u2019:\nqueue.c:69:20: error: unused variable \u2018cv\u2019 [-Werror=unused-variable]\n     pthread_cond_t cv = PTHREAD_COND_INITIALIZER;\n                    ^\nqueue.c:68:21: error: unused variable \u2018m\u2019 [-Werror=unused-variable]\n     pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;\n                     ^\nqueue.c: In function \u2018queue_destroy\u2019:\nqueue.c:80:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(queue->m));\n     ^\nqueue.c:81:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(queue->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/queue-release.o] Error 1\n", 
+        "name": "test_queue", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test queue, queue size doesn't exceed max capacity", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nqueue.c: In function \u2018queue_init\u2019:\nqueue.c:69:20: error: unused variable \u2018cv\u2019 [-Werror=unused-variable]\n     pthread_cond_t cv = PTHREAD_COND_INITIALIZER;\n                    ^\nqueue.c:68:21: error: unused variable \u2018m\u2019 [-Werror=unused-variable]\n     pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;\n                     ^\nqueue.c: In function \u2018queue_destroy\u2019:\nqueue.c:80:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(queue->m));\n     ^\nqueue.c:81:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(queue->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/queue-release.o] Error 1\n", 
+        "name": "test_queue_maxSize", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test semamore in rendezvous.c", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nrendezvous.c: In function \u2018main\u2019:\nrendezvous.c:19:15: warning: unused parameter \u2018argc\u2019 [-Wunused-parameter]\n int main (int argc, char** argv)\n               ^\nrendezvous.c:19:28: warning: unused parameter \u2018argv\u2019 [-Wunused-parameter]\n int main (int argc, char** argv)\n                            ^\nsemamore.c: In function \u2018semm_destroy\u2019:\nsemamore.c:82:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(s->m));\n     ^\nsemamore.c:83:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(s->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/semamore-release.o] Error 1\n", 
+        "name": "test_semamore", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test semamore init function", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\ntestsemamore.c: In function \u2018main\u2019:\ntestsemamore.c:63:14: warning: unused parameter \u2018argc\u2019 [-Wunused-parameter]\n int main(int argc, char **argv){\n              ^\nsemamore.c: In function \u2018semm_destroy\u2019:\nsemamore.c:82:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(s->m));\n     ^\nsemamore.c:83:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(s->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/semamore-release.o] Error 1\n", 
+        "name": "test_semamore_init", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test semamore wait", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nsemamore.c: In function \u2018semm_destroy\u2019:\nsemamore.c:82:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(s->m));\n     ^\nsemamore.c:83:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(s->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/semamore-release.o] Error 1\n", 
+        "name": "test_semamore_wait_simple", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that semamore wait blocks", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nsemamore.c: In function \u2018semm_destroy\u2019:\nsemamore.c:82:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(s->m));\n     ^\nsemamore.c:83:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(s->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/semamore-release.o] Error 1\n", 
+        "name": "test_semamore_wait_block", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test semamore post", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nsemamore.c: In function \u2018semm_destroy\u2019:\nsemamore.c:82:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(s->m));\n     ^\nsemamore.c:83:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(s->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/semamore-release.o] Error 1\n", 
+        "name": "test_semamore_post_simple", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that semamore post blocks", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nsemamore.c: In function \u2018semm_destroy\u2019:\nsemamore.c:82:5: error: implicit declaration of function \u2018pthread_mutex_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_mutex_destory(&(s->m));\n     ^\nsemamore.c:83:5: error: implicit declaration of function \u2018pthread_cond_destory\u2019 [-Werror=implicit-function-declaration]\n     pthread_cond_destory(&(s->cv));\n     ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/semamore-release.o] Error 1\n", 
+        "name": "test_semamore_post_block", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "(Pull Time: 2016-03-03 | Revision # 38926)"
+  }, 
+  {
+    "timestamp": "2016-03-03 12:34:10.398995", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "test_queue", 
+        "description": "Test queue, push and pull large amounts of data"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "test_queue_maxSize", 
+        "description": "Test queue, queue size doesn't exceed max capacity"
+      }, 
+      {
+        "log": "Test Failed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_semamore", 
+        "description": "Test semamore in rendezvous.c"
+      }, 
+      {
+        "log": "Test Failed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_semamore_init", 
+        "description": "Test semamore init function"
+      }, 
+      {
+        "log": "Test Failed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_semamore_wait_simple", 
+        "description": "Test semamore wait"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "test_semamore_wait_block", 
+        "description": "Test that semamore wait blocks"
+      }, 
+      {
+        "log": "Test Failed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_semamore_post_simple", 
+        "description": "Test semamore post"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "test_semamore_post_block", 
+        "description": "Test that semamore post blocks"
+      }
+    ], 
+    "revision": "(Pull Time: 2016-03-03 | Revision # 40045)"
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "timestamp": "2016-03-09 06:08:40.993477", 
+    "testcases": [
+      {
+        "ptsPossible": "1.0", 
+        "ptsEarned": 0.0, 
+        "description": "Test on use of barrier.", 
+        "name": "single_barrier_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nFailed the test.\nFailed the test.\nFailed the test.\n\nPassed 0/3 trials."
+      }, 
+      {
+        "ptsPossible": "2.0", 
+        "ptsEarned": 0.0, 
+        "description": "Test for multiple uses of the barrier.", 
+        "name": "multiple_barrier_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nFailed the test.\nFailed the test.\nFailed the test.\n\nPassed 0/3 trials."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test for poisson. Uses smaller numbers.", 
+        "name": "poisson_test1", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials."
+      }, 
+      {
+        "ptsPossible": 2.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test for poisson. Uses larger numbers.", 
+        "name": "poisson_test2", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials."
+      }, 
+      {
+        "ptsPossible": 4.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test for poisson. Same test as poisson_test2. Check if within 20% of reference solution.", 
+        "name": "poisson_performance_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials."
+      }
+    ], 
+    "checksum": "2246a4701b8c12d6af1abe01b865ff67f1f068cb  barrier.h\n6df8d211c3c252cd45e203756778706f47daf329  barrier.c\na114d1c624a9c52925c9283acca368a958a796fe  bmp.h\n2690f98df0cc60477b5c7c1146dbcd44cd413f6e  bmp.c\n0f5fd30d4e286bb69a91c79294190f388b28ba54  poisson.h\n0f00c61e1ad54cb818a6ed56aa472d38b83c95bb  poisson.c", 
+    "revision": "(Pull Time: 2016-03-10 | Revision # 43871)"
+  }, 
+  {
+    "timestamp": "2016-03-09 17:57:25.070688", 
+    "testcases": [
+      {
+        "description": "Test on use of barrier.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nFailed the test.\nFailed the test.\nFailed the test.\n\nPassed 0/3 trials.", 
+        "name": "single_barrier_test", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test for multiple uses of the barrier.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nFailed the test.\nFailed the test.\nFailed the test.\n\nPassed 0/3 trials.", 
+        "name": "multiple_barrier_test", 
+        "ptsPossible": 2.0
+      }, 
+      {
+        "description": "Test for multiple uses of the barrier under valgrind.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==13259== Memcheck, a memory error detector\n==13259== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==13259== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==13259== Command: ./multiple_barrier_test 4\n==13259== \n==13259== \n==13259== HEAP SUMMARY:\n==13259==     in use at exit: 0 bytes in 0 blocks\n==13259==   total heap usage: 4 allocs, 4 frees, 1,088 bytes allocated\n==13259== \n==13259== All heap blocks were freed -- no leaks are possible\n==13259== \n==13259== For counts of detected and suppressed errors, rerun with: -v\n==13259== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)\n\nFailed the test. Output was incorrect.\n\nPassed 0/1 trials.", 
+        "name": "multiple_barrier_test_memory", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test for poisson. Uses smaller numbers.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials.", 
+        "name": "poisson_test1", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test for poisson. Uses larger numbers.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials.", 
+        "name": "poisson_test2", 
+        "ptsPossible": 2.0
+      }, 
+      {
+        "description": "Test for poisson in valgrind. Uses smaller numbers.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n==13293== Memcheck, a memory error detector\n==13293== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==13293== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==13293== Command: ./poisson_test 256 4 50 0.000005\n==13293== \n==13293== \n==13293== HEAP SUMMARY:\n==13293==     in use at exit: 0 bytes in 0 blocks\n==13293==   total heap usage: 2 allocs, 2 frees, 534,576 bytes allocated\n==13293== \n==13293== All heap blocks were freed -- no leaks are possible\n==13293== \n==13293== For counts of detected and suppressed errors, rerun with: -v\n==13293== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)\n\n\nPassed 0/1 trials.", 
+        "name": "poisson_test_memory", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test for poisson. Same test as poisson_test2. Check if within 20% of reference solution.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials.", 
+        "name": "poisson_performance_test", 
+        "ptsPossible": 4.0
+      }
+    ], 
+    "revision": "(Pull Time: 2016-03-10 | Revision # 44246)", 
+    "checksum": "2246a4701b8c12d6af1abe01b865ff67f1f068cb  barrier.h\n6df8d211c3c252cd45e203756778706f47daf329  barrier.c\na114d1c624a9c52925c9283acca368a958a796fe  bmp.h\n2690f98df0cc60477b5c7c1146dbcd44cd413f6e  bmp.c\n0f5fd30d4e286bb69a91c79294190f388b28ba54  poisson.h\n0f00c61e1ad54cb818a6ed56aa472d38b83c95bb  poisson.c"
+  }, 
+  {
+    "timestamp": "2016-03-10 02:30:34.580674", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nSuccess.\nSuccess.\nSuccess.", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "single_barrier_test", 
+        "description": "Test on use of barrier."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nSuccess.\nSuccess.\nSuccess.", 
+        "ptsPossible": 2.0, 
+        "ptsEarned": 2.0, 
+        "name": "multiple_barrier_test", 
+        "description": "Test for multiple uses of the barrier."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==17634== Memcheck, a memory error detector\n==17634== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==17634== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==17634== Command: ./multiple_barrier_test 4\n==17634== \n==17634== \n==17634== HEAP SUMMARY:\n==17634==     in use at exit: 0 bytes in 0 blocks\n==17634==   total heap usage: 4 allocs, 4 frees, 1,088 bytes allocated\n==17634== \n==17634== All heap blocks were freed -- no leaks are possible\n==17634== \n==17634== For counts of detected and suppressed errors, rerun with: -v\n==17634== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)\n\nSuccess.", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "multiple_barrier_test_memory", 
+        "description": "Test for multiple uses of the barrier under valgrind."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials.", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "poisson_test1", 
+        "description": "Test for poisson. Uses smaller numbers."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials.", 
+        "ptsPossible": 2.0, 
+        "ptsEarned": 0.0, 
+        "name": "poisson_test2", 
+        "description": "Test for poisson. Uses larger numbers."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDidn't pass valgrind.\n==17709== Memcheck, a memory error detector\n==17709== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==17709== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==17709== Command: ./poisson_test 256 4 50 0.000005\n==17709== \n==17709== \n==17709== HEAP SUMMARY:\n==17709==     in use at exit: 8 bytes in 1 blocks\n==17709==   total heap usage: 53 allocs, 52 frees, 3,431,406 bytes allocated\n==17709== \n==17709== 8 bytes in 1 blocks are definitely lost in loss record 1 of 1\n==17709==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==17709==    by 0x401E73: poisson_setup (in .../pliu15/broken_barriers/poisson_test)\n==17709==    by 0x40204C: parallel_poisson (in .../pliu15/broken_barriers/poisson_test)\n==17709==    by 0x400F5B: main (in .../pliu15/broken_barriers/poisson_test)\n==17709== \n==17709== LEAK SUMMARY:\n==17709==    definitely lost: 8 bytes in 1 blocks\n==17709==    indirectly lost: 0 bytes in 0 blocks\n==17709==      possibly lost: 0 bytes in 0 blocks\n==17709==    still reachable: 0 bytes in 0 blocks\n==17709==         suppressed: 0 bytes in 0 blocks\n==17709== \n==17709== For counts of detected and suppressed errors, rerun with: -v\n==17709== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 2 from 2)\n\n\nPassed 0/1 trials.", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "poisson_test_memory", 
+        "description": "Test for poisson in valgrind. Uses smaller numbers."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nA bmp was not correct.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\nCouldn't find a certain bmp.\n\nPassed 0/3 trials.", 
+        "ptsPossible": 4.0, 
+        "ptsEarned": 0.0, 
+        "name": "poisson_performance_test", 
+        "description": "Test for poisson. Same test as poisson_test2. Check if within 20% of reference solution."
+      }
+    ], 
+    "checksum": "0b899e32ed0331eb1e370666c3b85d915c5e82ef  barrier.h\n581df718fc98e01f681782e39ca1627bbee274ea  barrier.c\na114d1c624a9c52925c9283acca368a958a796fe  bmp.h\n2690f98df0cc60477b5c7c1146dbcd44cd413f6e  bmp.c\n15facc1584463b13c13cee6f1c415b73ba8ba0a8  poisson.h\n539224f996e60cf808cd12576331a6191208cb52  poisson.c", 
+    "revision": "(Pull Time: 2016-03-10 | Revision # 45401)"
+  }
+]
