@@ -1,0 +1,218 @@
+/**
+ * Et Tu, Brute Lab
+ * CS 241 - Spring 2016
+ */
+#include "cipher.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
+/**
+ * This function will parse your program arguments for you.
+ 
+ * When it is done it will return an array of void pointers.
+ * Suppose that void ** args = arg_parse(int argc, char *argv[]):
+ *  args[0] - is a pointer to the number of lines in the file
+ *  args[1] - is a pointer to the number of bytes in the longest line
+ *  args[2] - is a FILE pointer to the input file
+ *  args[3] - is a FILE pointer to the output file
+ *
+ * Features:
+ *  Will prompt the user if they don't have the right arguments
+ *  Will prompt the user if the input file is not readable
+ *  Will prompt the user if the output file is not writable
+ *  Will rewind() the FILE pointer for the input file
+ *
+ * Note: When you are done using the args returned
+ *  Call free_args to clean up memory and close files
+ */
+void **arg_parse(int argc, char *argv[]) {
+    if (argc != 3) {
+        fprintf(stderr, "%s <input_file> <output_file>\n", argv[0]);
+        exit(1);
+    }
+    
+    // Testing that the input and output files are valid ...
+    char *input_file_name = argv[1];
+    FILE *input_file = fopen(input_file_name, "r");
+    if (input_file == NULL) {
+        fprintf(stderr, "Was not able to read from the input file. Exiting...\n");
+        exit(1);
+    }
+    
+    char *output_file_name = argv[2];
+    FILE *output_file = fopen(output_file_name, "w");
+    if (output_file == NULL) {
+        fprintf(stderr, "Was not able to write to the output file. Exiting...\n");
+        exit(1);
+    }
+    
+    // Open input file
+    //  -> figure out how many lines it has and how long the longest line is
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t bytes_read;
+    size_t *num_lines = calloc(1, sizeof(size_t));
+    size_t *max_line_length = calloc(1, sizeof(size_t));
+    
+    while ((bytes_read = getline(&line, &len, input_file)) != -1) {
+        // Figuring out how many lines the file has
+        (*num_lines)++;
+        // Updating the max line length
+        *max_line_length = *max_line_length > (size_t)bytes_read
+        ? *max_line_length
+        : (size_t)bytes_read;
+    }
+    free(line);
+    rewind(input_file); // move pointer back to begining of the file
+    
+    // Ok return all this information to the user
+    
+    // One void pointer for each of the return values
+    void **retvals = malloc(4 * sizeof(void *));
+    retvals[0] = num_lines;
+    retvals[1] = max_line_length;
+    retvals[2] = input_file;
+    retvals[3] = output_file;
+    return retvals;
+}
+
+// Call this function to free the args returned from arg_parse()
+void free_args(void **args) {
+    free(args[0]);   // Freeing size_t *num_lines
+    free(args[1]);   // Freeing size_t *max_line_length
+    fclose(args[2]); // Closing the input file
+    fclose(args[3]); // Closing the output file
+    free(args);      // Freeing the args array
+}
+
+// The general strategy is simple
+// We have to explain many concepts like forking, IPC, pipes, file descriptors and memory mapping
+// But the basic steps are simple
+//
+// 1. Parse the arguments using the arg_parse function we have above
+// 2. Read the input file given and set a line counter to 1
+// 3. Make a pipe, set the length to match the longest line given from arg_parse
+// 4. Read the line of the file given by the line counter
+// 5. Fork, this creates an exact copy of the program as it is right now, the only difference is that the return
+// value of Fork is different for the two copies so you can see which one is the original. Everything is a copy
+// nothing is shared, unlike threads. But because copies of a file pointer still point to the same file, pipes still are shared
+// 6. In the parent, store the pid of the child given by fork, increment the line counter by 1,
+// then repeat from step 3 until we forked for each line in the file
+// 7. Then we wait for each forked child process to finish, like pthread_join, then we read every pipe in order
+// and write the output to the output file
+//
+// Meanwhile for the child processes:
+// 6a. We take the read line (because every process is an exact copy at the time Fork is run, by changing stuff between
+// calling fork, we can send different information to different child processes) and send it to the cipher library
+// 7a. Then we write the output back into the current pipe (which is different for each processes for the same reason as the read line)
+// 8a. Exit
+
+int main(int argc, char *argv[])
+{
+    // Step 1
+    void ** args = arg_parse(argc, argv);
+    
+    size_t num_lines = *(size_t *)args[0];
+    // +1 for the \0 at the end of strings
+    size_t max_line_length = *(size_t *)args[1] + 1;
+    FILE *input_file = args[2];
+    FILE *output_file = args[3];
+    
+    printf("Num Lines %d Max Line Length %d\n", (int)num_lines, (int)max_line_length);
+    
+    pid_t *child_pids = malloc(sizeof(pid_t) * num_lines);
+    
+    // Step 2
+    size_t line_num = 0;
+    char *line = malloc(sizeof(char) * max_line_length);
+    
+    int **p = malloc(sizeof(int *) * num_lines);
+    for(int i = 0; i < (int)num_lines; i++)
+    {
+        p[i] = malloc(sizeof(int) * 2);
+    }
+    
+    while(line_num < num_lines)
+    {
+        printf("Line %zu\n", line_num);
+        // Step 3
+        pipe(p[line_num]);
+        
+        fcntl(p[line_num][1], F_SETPIPE_SZ, max_line_length);
+        
+        // Step 4
+        fgets(line, max_line_length, input_file);
+        
+        printf("Considering Line %s\n", line);
+        
+        // Step 5
+        child_pids[line_num] = fork();
+        
+        if(child_pids[line_num] == -1)
+        {
+            printf("Error Forking\n");
+            // Error Forking
+            free_args(args);
+            return -1;
+        }
+        
+        if(child_pids[line_num] == 0)
+        {
+            printf("Child PID");
+            // We are turning off reading from the pipe in the child as suggested by the assignment
+            close(p[line_num][0]);
+            
+            // Step 6a
+            char *deciphered_line = get_most_likely_print_out(line);
+            
+            printf("Child: Deciphered Line %s\n", deciphered_line);
+            
+            // Step 7a
+            write(p[line_num][1], deciphered_line, max_line_length);
+            
+            // Step 8a
+            printf("Child Closing\n");
+            free(deciphered_line);
+            close(p[line_num][1]);
+            return 0;
+        }
+        else
+        {
+            // We are turning off writing from the pipe in the parent as suggested by the assignment
+            close(p[line_num][1]);
+            // Step 6
+            line_num++;
+        }
+    }
+    
+    // Step 7
+    for(int i = 0; i < (int)num_lines; i++)
+    {
+        printf("Waiting Child %d", i);
+        waitpid(child_pids[i], NULL, 0);
+        
+        read(p[i][0], line, max_line_length);
+        printf("Deciphered Line %d: %s", i, line);
+        
+        fputs(line, output_file);
+        printf("Line Written\n");
+        
+        close(p[i][0]);
+    }
+    
+    free(child_pids);
+    free(line);
+    for(int i = 0; i < (int)max_line_length; i++)
+    {
+        free(p[i]);
+    }
+    free(p);
+    free_args(args);
+    return 0;
+}
+

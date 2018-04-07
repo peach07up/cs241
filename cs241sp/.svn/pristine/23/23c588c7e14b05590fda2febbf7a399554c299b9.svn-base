@@ -1,0 +1,107 @@
+[
+  {
+    "timestamp": "2016-04-12 18:45:00.105104", 
+    "testcases": [
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Testing to see if you can decrypt an empty file", 
+        "name": "test_empty_file", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/empty_attempt.txt: No such file or directory\n\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Testing to see if you can decrypt a file with 1 line", 
+        "name": "test_one_decrypt", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/one_attempt.txt: No such file or directory\n\n"
+      }, 
+      {
+        "ptsPossible": 3.0, 
+        "ptsEarned": 0.0, 
+        "description": "Testing to see if you can decrypt multiple lines and in parallel", 
+        "name": "test_parallel_decrypt", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/parallel_attempt.txt: No such file or directory\n\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1, 
+        "description": "Testing to see if your code handles user error like missing input file or output file", 
+        "name": "test_error_handle", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }
+    ], 
+    "checksum": "8dfda420a0ab94ab05705cfb6b6e37de2763ccd4  brutus.c", 
+    "revision": "70813"
+  }, 
+  {
+    "timestamp": "2016-04-12 23:00:00.531118", 
+    "testcases": [
+      {
+        "description": "Testing to see if you can decrypt an empty file", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/empty_attempt.txt: No such file or directory\n\n", 
+        "name": "test_empty_file", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Testing to see if you can decrypt a file with 1 line", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/one_attempt.txt: No such file or directory\n\n", 
+        "name": "test_one_decrypt", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Testing to see if you can decrypt multiple lines and in parallel", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/parallel_attempt.txt: No such file or directory\n\n", 
+        "name": "test_parallel_decrypt", 
+        "ptsPossible": 3.0
+      }, 
+      {
+        "description": "Testing to see if your code handles user error like missing input file or output file", 
+        "ptsEarned": 1, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "test_error_handle", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "71052", 
+    "checksum": "8dfda420a0ab94ab05705cfb6b6e37de2763ccd4  brutus.c"
+  }, 
+  {
+    "timestamp": "2016-04-13 04:00:00.587412", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/empty_attempt.txt: No such file or directory\n\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_empty_file", 
+        "description": "Testing to see if you can decrypt an empty file"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/one_attempt.txt: No such file or directory\n\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_one_decrypt", 
+        "description": "Testing to see if you can decrypt a file with 1 line"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nDiffing your output with the expected solution...\nRESULTS DIFFERED FROM SOLUTION!\ndiff: lab/et_tu_brute/svn/pliu15/et_tu_brute/parallel_attempt.txt: No such file or directory\n\n", 
+        "ptsPossible": 3.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_parallel_decrypt", 
+        "description": "Testing to see if you can decrypt multiple lines and in parallel"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1, 
+        "name": "test_error_handle", 
+        "description": "Testing to see if your code handles user error like missing input file or output file"
+      }
+    ], 
+    "checksum": "8dfda420a0ab94ab05705cfb6b6e37de2763ccd4  brutus.c", 
+    "revision": "71259"
+  }
+]

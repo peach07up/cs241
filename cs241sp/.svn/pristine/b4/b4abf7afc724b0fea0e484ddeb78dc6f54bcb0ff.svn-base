@@ -1,0 +1,334 @@
+/**
+ * Scheduler Lab
+ * CS 241 - Spring 2016
+ */
+/** @file libscheduler.c
+ */
+#include "libscheduler.h"
+#include "stdio.h"
+
+priqueue_t pqueue;
+core_t *cores;
+scheme_t scheme;
+int num_cores;
+int num_jobs = 0;
+
+int total_turnaround_time = 0;
+int total_response_time = 0;
+int total_waiting_time = 0;
+
+int comparer_fcfs(const void *a, const void *b)
+{
+    return ((job_t *)a)->arrival_time - ((job_t *)b)->arrival_time;
+}
+
+int comparer_pri(const void *a, const void *b)
+{
+    int ret = ((job_t *)b)->priority - ((job_t *)a)->priority;
+    return ret == 0 ? comparer_fcfs(a, b) : ret;
+}
+int comparer_psjf(const void *a, const void *b)
+{
+    int ret = ((job_t *)a)->remaining_time - ((job_t *)b)->remaining_time;
+    return ret == 0 ? comparer_fcfs(a, b) : ret;
+}
+int comparer_rr(const void *a, const void *b)
+{
+    int ret = ((job_t *)a)->last_run_time - ((job_t *)b)->last_run_time;
+    return ret == 0 ? comparer_fcfs(a, b) : ret;
+}
+
+/**
+ Initalizes the scheduler.
+ 
+ Assumptions:
+ - You may assume this will be the first scheduler function called.
+ - You may assume this function will be called once once.
+ - You may assume that cores is a positive, non-zero number.
+ - You may assume that scheme is a valid scheduling scheme.
+ 
+ @param numcores the number of cores that is available by the scheduler. These
+ cores will be known as core(id=0), core(id=1), ..., core(id=cores-1).
+ @param s  the scheduling scheme that should be used. This value will be one of
+ the six enum values of scheme_t
+ */
+void scheduler_start_up(int numcores, scheme_t s) {
+    // Init pqeueue
+    if (s == FCFS)
+        priqueue_init(&pqueue, comparer_fcfs);
+    else if (s == PRI)
+        priqueue_init(&pqueue, comparer_pri);
+    else if (s == PSJF)
+        priqueue_init(&pqueue, comparer_psjf);
+    else if (s == RR)
+        priqueue_init(&pqueue, comparer_rr);
+    else
+        exit(1);
+    
+    // Init scheme
+    scheme = s;
+    
+    // Init cores
+    cores = malloc(sizeof(core_t) * numcores);
+    for(int i = 0; i < numcores; i++)
+    {
+        cores[i].free = 1;
+        cores[i].job = NULL;
+    }
+    num_cores = numcores;
+}
+
+/**
+ Called when a new job arrives.
+ 
+ If multiple cores are idle, the job should be assigned to the core with the
+ lowest id.
+ If the job arriving should be scheduled to run during the next
+ time cycle, return the zero-based index of the core the job should be
+ scheduled on. If another job is already running on the core specified,
+ this will preempt the currently running job.
+ Assumptions:
+ - You may assume that every job wil have a unique arrival time.
+ 
+ @param job_number a globally unique identification number of the job arriving.
+ @param time the current time of the simulator.
+ @param running_time the total number of time units this job will run before it
+ will be finished.
+ @param priority the priority of the job. (The lower the value, the higher the
+ priority.)
+ @return index of core job should be scheduled on
+ @return -1 if no scheduling changes should be made.
+ 
+ */
+int scheduler_new_job(int job_number, int time, int running_time,
+                      int priority) {
+    
+    // Create the job_t struct
+    num_jobs++;
+    job_t *job = malloc(sizeof(job_t));
+    job->id = job_number;
+    job->arrival_time = time;
+    job->total_time = running_time;
+    job->last_run_time = time;
+    job->priority = priority;
+    job->remaining_time = running_time;
+    // 0 means not set yet
+    // So we can keep track of when response time is set
+    // Waiting time is 1, because the assignment says if it runs on the same
+    // time as it starts, its still considered to be waiting this time
+    job->waiting_time = 1;
+    job->response_time = 0;
+    job->turnaround_time = 0;
+    
+    // If there is a free core, we'll run this immediately
+    for(int i = 0; i < num_cores; i++)
+    {
+        if(cores[i].free == 1)
+        {
+            // Assign the job to the core and set it to not free
+            cores[i].free = 0;
+            cores[i].job = job;
+            job->last_run_time = time;
+            job->response_time = 1;
+            return i;
+        }
+    }
+    
+    // There is not a free core, are we running the preemptive scheme?
+    if(scheme == PSJF)
+    {
+        // Yes, see if we can preempt any current running job
+        int longest_time = job->remaining_time;
+        int core = -1;
+        for(int i = 0; i < num_cores; i++)
+        {
+            if(cores[i].job->remaining_time > longest_time)
+            {
+                // This core has a job that could be preempted
+                // Log it and check the other cores if there is a better
+                // Preemption target
+                longest_time = cores[i].job->remaining_time;
+                core = i;
+            }
+        }
+        // Ok, we can preempt something, so let's do it
+        if(core >= 0)
+        {
+            // Calculate the remaining time for the job we just took out
+            cores[core].job->remaining_time -= (time - cores[core].job->last_run_time);
+            // First we'll need to take out the job and add it back to the queue
+            priqueue_offer(&pqueue, cores[core].job);
+            // Now replace it with this job
+            cores[core].job = job;
+            job->response_time = 1;
+            return core;
+        }
+    }
+    
+    // Either we are not preemptive, or there is nothing we can preempt
+    // So add this to the queue and return -1, meaning we are waiting for a free
+    // core
+    priqueue_offer(&pqueue, job);
+    return -1;
+}
+
+/**
+ Called when a job has completed execution.
+ 
+ The core_id, job_number and time parameters are provided for convenience. You
+ may be able to calculate the values with your own data structure.
+ If any job should be scheduled to run on the core free'd up by the
+ finished job, return the job_number of the job that should be scheduled to
+ run on core core_id.
+ 
+ @param core_id the zero-based index of the core where the job was located.
+ @param job_number a globally unique identification number of the job.
+ @param time the current time of the simulator.
+ @return job_number of the job that should be scheduled to run on core core_id
+ @return -1 if core should remain idle.
+ */
+int scheduler_job_finished(int core_id, int job_number, int time)
+{
+    // Calculate the turnaround time
+    // +1 because we count the first time as well
+    cores[core_id].job->turnaround_time = time - cores[core_id].job->arrival_time + 1;
+    total_turnaround_time += cores[core_id].job->turnaround_time;
+    total_response_time += cores[core_id].job->response_time;
+    total_waiting_time += cores[core_id].job->waiting_time;
+    printf("%d %d %d\n", total_turnaround_time, total_response_time, total_waiting_time);
+    
+    // Job is finished, is there another job waiting?
+    if(priqueue_size(&pqueue) <= 0)
+    {
+        // Nope, just empty out the core, leave it free for another job
+        // and return
+        cores[core_id].free = 1;
+        // Free the memory
+        free(cores[core_id].job);
+        cores[core_id].job = NULL;
+        return -1;
+    }
+    // Yes there are jobs available, so let's get one
+    
+    // First free the finished job
+    cores[core_id].job->remaining_time = 0;
+    free(cores[core_id].job);
+    
+    // Assign the next job
+    cores[core_id].job = priqueue_poll(&pqueue);
+    // Calculate the waiting (and response times if necessary)
+    if(cores[core_id].job->response_time == 0)
+    {
+        cores[core_id].job->response_time = time - cores[core_id].job->arrival_time + 1;
+    }
+    cores[core_id].job->waiting_time += (time - cores[core_id].job->last_run_time);
+    cores[core_id].job->last_run_time = time;
+    return cores[core_id].job->id;
+}
+
+/**
+ When the scheme is set to RR, called when the quantum timer has expired
+ on a core.
+ 
+ If any job should be scheduled to run on the core free'd up by
+ the quantum expiration, return the job_number of the job that should be
+ scheduled to run on core core_id.
+ 
+ @param core_id the zero-based index of the core where the quantum has expired.
+ @param time the current time of the simulator.
+ @return job_number of the job that should be scheduled on core cord_id
+ @return -1 if core should remain idle
+ */
+int scheduler_quantum_expired(int core_id, int time)
+{
+    // First add the job back to the queue if the core is currently running
+    if(cores[core_id].free == 0)
+    {
+        // Calculate the remaining time for the job we just took out
+        cores[core_id].job->remaining_time -= (time - cores[core_id].job->last_run_time);
+        priqueue_offer(&pqueue, cores[core_id].job);
+        cores[core_id].job = NULL;
+        cores[core_id].free = 1;
+    }
+    
+    // Now we check if there is anything to run
+    if(priqueue_size(&pqueue) > 0)
+    {
+        cores[core_id].job = priqueue_poll(&pqueue);
+        // Calculate the waiting (and response times if necessary)
+        if(cores[core_id].job->response_time == 0)
+        {
+            cores[core_id].job->response_time = time - cores[core_id].job->arrival_time + 1;
+        }
+        cores[core_id].job->waiting_time += (time - cores[core_id].job->last_run_time);
+        cores[core_id].job->last_run_time = time;
+        cores[core_id].free = 0;
+        return cores[core_id].job->id;
+    }
+    
+    // If we are here, there is nothing to run right now
+    return -1;
+}
+
+/**
+ Returns the average waiting time of all jobs scheduled by your scheduler.
+ 
+ Assumptions:
+ - This function will only be called after all scheduling is complete (all
+ jobs that have arrived will have finished and no new jobs will arrive).
+ @return the average waiting time of all jobs scheduled.
+ */
+float scheduler_average_waiting_time() {return ((float)total_waiting_time / (float)num_jobs);}
+
+/**
+ Returns the average turnaround time of all jobs scheduled by your scheduler.
+ 
+ Assumptions:
+ - This function will only be called after all scheduling is complete (all
+ jobs that have arrived will have finished and no new jobs will arrive).
+ @return the average turnaround time of all jobs scheduled.
+ */
+float scheduler_average_turnaround_time() {return ((float)total_turnaround_time / (float)num_jobs);}
+
+/**
+ Returns the average response time of all jobs scheduled by your scheduler.
+ 
+ Assumptions:
+ - This function will only be called after all scheduling is complete (all
+ jobs that have arrived will have finished and no new jobs will arrive).
+ @return the average response time of all jobs scheduled.
+ */
+float scheduler_average_response_time() {return ((float)total_response_time / (float)num_jobs);}
+
+/**
+ Free any memory associated with your scheduler.
+ 
+ Assumptions:
+ - This function will be the last function called in your library.
+ */
+void scheduler_clean_up() {
+    /* Do more cleaning up here */
+    priqueue_destroy(&pqueue);
+    free(cores);
+}
+
+/**
+ This function may print out any debugging information you choose. This
+ function will be called by the simulator after every call the simulator
+ makes to your scheduler.
+ In our provided output, we have implemented this function to list the jobs in
+ the order they are to be scheduled. Furthermore, we have also listed the
+ current state of the job (either running on a given core or idle). For
+ example, if we have a non-preemptive algorithm and job(id=4) has began
+ running, job(id=2) arrives with a higher priority, and job(id=1) arrives with
+ a lower priority, the output in our sample output will be:
+ 
+ 2(-1) 4(0) 1(-1)
+ 
+ This function is not required and will not be graded. You may leave it
+ blank if you do not find it useful.
+ */
+void scheduler_show_queue() {
+    // This function is left entirely to you! Totally optional.
+}
+

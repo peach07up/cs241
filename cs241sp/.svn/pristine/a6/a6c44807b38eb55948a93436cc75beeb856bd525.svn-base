@@ -1,0 +1,158 @@
+/**
+ * Chatroom Lab
+ * CS 241 - Spring 2016
+ */
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <signal.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+#include "server.h"
+
+void *processClient(void *arg);
+void write_to_clients(const char *message, int len);
+
+int endingServer;
+int serverSocket;
+int clients[MAX_CLIENTS];
+int clientsConnected;
+pthread_t clientThreads[MAX_CLIENTS];
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+void close_server() {
+    // Use a signal handler to call this function and close the server
+}
+
+int main(int argc, char **argv) {
+    
+    if(argc < 1){
+        printf("Please specify port\n");
+    }
+    int port = atoi(argv[1]);
+    int sockfd;
+    int clilen;
+    struct sockaddr_in client_addr, sev_addr;
+    
+    //Create a socket
+    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        printf("Cannot create socket\n");
+        exit(0);
+    }
+    
+    serv_addr.sin_family		= AF_INET;
+    serv_addr.sin_addr.s_addr	= INADDR_ANY;
+    serv_addr.sin_port		= htons(port);
+    
+    //Bind Socket
+    if (bind(sockfd, (struct sockaddr *) &serv_addr,
+             sizeof(serv_addr)) < 0) {
+        printf("Unable to bind local address\n");
+        exit(0);
+    }
+    
+    //Listen on port
+    listen(sockfd,5);
+    
+    clientsConnected = 0;
+    while(1){
+        clilen = sizeof(client_addr);
+        //Update Client FD Array
+        int i,index = -1;
+        for(i = 0; i < MAX_CLIENTS;i++){
+            if(clients[i] < 0){
+                index = i;
+                break;
+            }
+        }
+        if(index == -1){
+            printf("Maximum Limit Reached\n");
+            continue;
+        }
+        clients[index] = accept(sockfd, (struct sockaddr *)client_addr,&clilen);
+        if (clients[index] < 0) {
+            printf("Accept error\n");
+            exit(0);
+        }
+        clientsConnected ++;
+        //Redirect to a separate thread
+        pthread_create(&clientThreads[index],NULL,clientThread,&clients[index]);
+    }can you
+    
+    /*QUESTION 1*/
+    /*QUESTION 2*/
+    /*QUESTION 3*/
+    
+    /*QUESTION 8*/
+    
+    /*QUESTION 4*/
+    /*QUESTION 5*/
+    /*QUESTION 6*/
+    
+    /*QUESTION 9*/
+    
+    /*QUESTION 10*/
+    
+    // Can now start accepting and processing client connections
+    /*QUESTION 11*/
+}
+
+
+void * clientThread(void * arg){
+    processClient(arg);
+    *((int *)arg) = -1;
+}
+
+// DO NOT MODIFY THIS FUNCTION
+void write_to_clients(const char *message, int len) {
+    int i;
+    for (i = 0; i < clientsConnected; i++) {
+        write(clients[i], message, len);
+    }
+}
+
+// DO NOT MODIFY THIS FUNCTION (BUT DO USE IT)
+void *processClient(void *arg) {
+    int client_fd = (intptr_t)arg;
+    int client_is_connected = 1;
+    while (client_is_connected) {
+        
+        char buffer[MSG_SIZE];
+        int len = 0;
+        int num;
+        
+        // Read until client sends eof or \n is read
+        while (1) {
+            num = read(client_fd, buffer + len, MSG_SIZE);
+            len += num;
+            
+            if (!num) {
+                client_is_connected = 0;
+                break;
+            }
+            if (buffer[len - 1] == '\n')
+                break;
+        }
+        
+        // Error or client closed the connection, so time to close this specific
+        // client connection
+        if (!client_is_connected) {
+            printf("User %d left\n", client_fd);
+            break;
+        }
+        
+        write_to_clients(buffer, len);
+    }
+    
+    close(client_fd);
+    pthread_mutex_lock(&mutex);
+    clientsConnected--;
+    pthread_mutex_unlock(&mutex);
+    return NULL;
+}

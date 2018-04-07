@@ -1,0 +1,667 @@
+[
+  {
+    "timestamp": "2016-04-17 22:00:02.182833", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nData was not split evenly among mappers", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "splitter", 
+        "description": "Test splitter is used correctly to feed data to mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers, with mappers of 0\nUnable to open/read output file", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "small_input", 
+        "description": "Test that mr1 print the correct output on a small input with multiple mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nCouldn't open/read output file", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "large_input", 
+        "description": "Test that tests mr1 on a large input"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nUnable to open/read output file", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "reducer_test", 
+        "description": "Test one reducer is used correctly"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers with mappers of 0", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "test_mapper", 
+        "description": "Test that tests that multiple mappers are used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "performance_test", 
+        "description": "Test one reducer is used correctly"
+      }
+    ], 
+    "revision": "73809", 
+    "checksum": "7aacf87a504353d93633ab601bc5618860546ddc  mr1.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h"
+  }, 
+  {
+    "timestamp": "2016-04-18 08:00:02.194197", 
+    "testcases": [
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test splitter is used correctly to feed data to mappers", 
+        "name": "splitter", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nData was not split evenly among mappers"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test that mr1 print the correct output on a small input with multiple mappers", 
+        "name": "small_input", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers, with mappers of 0\nUnable to open/read output file"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test that tests mr1 on a large input", 
+        "name": "large_input", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nCouldn't open/read output file"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test one reducer is used correctly", 
+        "name": "reducer_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nUnable to open/read output file"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test that tests that multiple mappers are used", 
+        "name": "test_mapper", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers with mappers of 0"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test one reducer is used correctly", 
+        "name": "performance_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files"
+      }
+    ], 
+    "checksum": "7aacf87a504353d93633ab601bc5618860546ddc  mr1.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h", 
+    "revision": "74308"
+  }, 
+  {
+    "timestamp": "2016-04-18 16:00:00.342709", 
+    "testcases": [
+      {
+        "description": "Test splitter is used correctly to feed data to mappers", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "splitter", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that mr1 print the correct output on a small input with multiple mappers", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "small_input", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests mr1 on a large input", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "large_input", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test one reducer is used correctly", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "name": "reducer_test", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests that multiple mappers are used", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "test_mapper", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test one reducer is used correctly", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "name": "performance_test", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "74656", 
+    "checksum": "3671fce021d200dd1b78b81a84685d7d158d9a16  mr1.c\n6b4a644452ac192317eb1f467e67ac57097a7e35  core/common.c\na29561afcfdb3b51326589343968fb7dfb25cdb0  core/common.h"
+  }, 
+  {
+    "timestamp": "2016-04-18 20:00:01.718179", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsEarned": 1.0, 
+        "ptsPossible": 1.0, 
+        "name": "splitter", 
+        "description": "Test splitter is used correctly to feed data to mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsEarned": 1.0, 
+        "ptsPossible": 1.0, 
+        "name": "small_input", 
+        "description": "Test that mr1 print the correct output on a small input with multiple mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsEarned": 1.0, 
+        "ptsPossible": 1.0, 
+        "name": "large_input", 
+        "description": "Test that tests mr1 on a large input"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "ptsEarned": 1.0, 
+        "ptsPossible": 1.0, 
+        "name": "reducer_test", 
+        "description": "Test one reducer is used correctly"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsEarned": 1.0, 
+        "ptsPossible": 1.0, 
+        "name": "test_mapper", 
+        "description": "Test that tests that multiple mappers are used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "ptsEarned": 1.0, 
+        "ptsPossible": 1.0, 
+        "name": "performance_test", 
+        "description": "Test one reducer is used correctly"
+      }
+    ], 
+    "checksum": "3671fce021d200dd1b78b81a84685d7d158d9a16  mr1.c\n6b4a644452ac192317eb1f467e67ac57097a7e35  core/common.c\na29561afcfdb3b51326589343968fb7dfb25cdb0  core/common.h", 
+    "revision": "75357"
+  }, 
+  {
+    "timestamp": "2016-04-19 00:00:01.755208", 
+    "testcases": [
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test splitter is used correctly to feed data to mappers", 
+        "name": "splitter", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that mr1 print the correct output on a small input with multiple mappers", 
+        "name": "small_input", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that tests mr1 on a large input", 
+        "name": "large_input", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test one reducer is used correctly", 
+        "name": "reducer_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that tests that multiple mappers are used", 
+        "name": "test_mapper", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test one reducer is used correctly", 
+        "name": "performance_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed"
+      }
+    ], 
+    "revision": "76260", 
+    "checksum": "3671fce021d200dd1b78b81a84685d7d158d9a16  mr1.c\n6b4a644452ac192317eb1f467e67ac57097a7e35  core/common.c\na29561afcfdb3b51326589343968fb7dfb25cdb0  core/common.h"
+  }, 
+  {
+    "timestamp": "2016-04-24 18:00:00.178139", 
+    "testcases": [
+      {
+        "description": "Test splitter is used correctly to feed data to mappers", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nData was not split evenly among mappers", 
+        "name": "splitter", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test one reducer is used correctly", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nUnable to open/read output file", 
+        "name": "reducer_test", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests that multiple mappers are used", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers", 
+        "name": "test_mapper", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests that mkfifo is used", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mkfifo files", 
+        "name": "test_mkfifo", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test performance of slow reducer", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files", 
+        "name": "performance_test", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that shuffler outputs correctly to given files", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nOutput file did not match solution\nOutput file did not match solution", 
+        "name": "shuffler_test_small", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that mr2 print the correct output on a small input with multiple mappers", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nUnable to open/read output file", 
+        "name": "small_input", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests mr2 on a large input", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nIncorrect number of reducers\nCouldn't open/read output file", 
+        "name": "large_input", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test performance of slow reducer", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files", 
+        "name": "performance_test2", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Memory test for mr2", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nUnable to open/read output file\n==8005== Memcheck, a memory error detector\n==8005== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==8005== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==8005== Command: ././mr2 ././data/input_small.txt ./temp/output.out ././mapper_asciicount ././reducer_sum 2 2\n==8005== \n==8005== \n==8005== HEAP SUMMARY:\n==8005==     in use at exit: 0 bytes in 0 blocks\n==8005==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated\n==8005== \n==8005== All heap blocks were freed -- no leaks are possible\n==8005== \n==8005== For counts of detected and suppressed errors, rerun with: -v\n==8005== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)", 
+        "name": "memory_mapreduce", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that shuffler outputs correctly to given files", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nOutput file did not match solution\nOutput file did not match solution\n", 
+        "name": "shuffler_memory", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "checksum": "2924c177ccfc76dc9af2305532d8c9b9c0eedc7c  mr2.c\n6baf5ad62aad023cc415c12adbcdc3ea63415dc1  shuffler.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h", 
+    "revision": "79715"
+  }, 
+  {
+    "timestamp": "2016-04-24 23:59:00.183243", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nData was not split evenly among mappers", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "splitter", 
+        "description": "Test splitter is used correctly to feed data to mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nUnable to open/read output file", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "reducer_test", 
+        "description": "Test one reducer is used correctly"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "test_mapper", 
+        "description": "Test that tests that multiple mappers are used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mkfifo files", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "test_mkfifo", 
+        "description": "Test that tests that mkfifo is used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "performance_test", 
+        "description": "Test performance of slow reducer"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nOutput file did not match solution\nOutput file did not match solution", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "shuffler_test_small", 
+        "description": "Test that shuffler outputs correctly to given files"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nUnable to open/read output file", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "small_input", 
+        "description": "Test that mr2 print the correct output on a small input with multiple mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nIncorrect number of reducers\nCouldn't open/read output file", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "large_input", 
+        "description": "Test that tests mr2 on a large input"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "performance_test2", 
+        "description": "Test performance of slow reducer"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nUnable to open/read output file\n==31608== Memcheck, a memory error detector\n==31608== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==31608== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==31608== Command: ././mr2 ././data/input_small.txt ./temp/output.out ././mapper_asciicount ././reducer_sum 2 2\n==31608== \n==31608== \n==31608== HEAP SUMMARY:\n==31608==     in use at exit: 0 bytes in 0 blocks\n==31608==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated\n==31608== \n==31608== All heap blocks were freed -- no leaks are possible\n==31608== \n==31608== For counts of detected and suppressed errors, rerun with: -v\n==31608== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "memory_mapreduce", 
+        "description": "Memory test for mr2"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nOutput file did not match solution\nOutput file did not match solution\n", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "shuffler_memory", 
+        "description": "Test that shuffler outputs correctly to given files"
+      }
+    ], 
+    "revision": "80104", 
+    "checksum": "2924c177ccfc76dc9af2305532d8c9b9c0eedc7c  mr2.c\n6baf5ad62aad023cc415c12adbcdc3ea63415dc1  shuffler.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h"
+  }, 
+  {
+    "timestamp": "2016-04-25 15:20:00.153278", 
+    "testcases": [
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test splitter is used correctly to feed data to mappers", 
+        "name": "splitter", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test one reducer is used correctly", 
+        "name": "reducer_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that tests that multiple mappers are used", 
+        "name": "test_mapper", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that tests that mkfifo is used", 
+        "name": "test_mkfifo", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test performance of slow reducer", 
+        "name": "performance_test", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that shuffler outputs correctly to given files", 
+        "name": "shuffler_test_small", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that mr2 print the correct output on a small input with multiple mappers", 
+        "name": "small_input", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that tests mr2 on a large input", 
+        "name": "large_input", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code.."
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test performance of slow reducer", 
+        "name": "performance_test2", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Memory test for mr2", 
+        "name": "memory_mapreduce", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nOutput file did not match solution\n==28190== Memcheck, a memory error detector\n==28190== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==28190== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==28190== Command: ././mr2 ././data/input_small.txt ./temp/output.out ././mapper_asciicount ././reducer_sum 2 2\n==28190== \n==28193== Conditional jump or move depends on uninitialised value(s)\n==28193==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x4016AB: main (mr2.c:99)\n==28193== \n==28193== Syscall param execve(argv) points to uninitialised byte(s)\n==28193==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x4016AB: main (mr2.c:99)\n==28193==  Address 0xffeffde98 is on thread 1's stack\n==28193==  in frame #1, created by execl (???)\n==28193== \n==28193== Syscall param execve(argv[i]) points to uninitialised byte(s)\n==28193==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x4016AB: main (mr2.c:99)\n==28193==  Address 0x5616240 is 0 bytes inside a block of size 8 alloc'd\n==28193==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==28193==    by 0x40159B: main (mr2.c:64)\n==28193== \n==28193== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==28193==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28193==    by 0x4016AB: main (mr2.c:99)\n==28193==  Address 0x2 is not stack'd, malloc'd or (recently) free'd\n==28193== \n==28193== execve(0xfff000386(././mapper_asciicount), 0xffeffde70, 0xfff000088) failed, errno 14\n==28193== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==28193== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==28194== Conditional jump or move depends on uninitialised value(s)\n==28194==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x4016AB: main (mr2.c:99)\n==28194== \n==28194== Syscall param execve(argv) points to uninitialised byte(s)\n==28194==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x4016AB: main (mr2.c:99)\n==28194==  Address 0xffeffde98 is on thread 1's stack\n==28194==  in frame #1, created by execl (???)\n==28194== \n==28194== Syscall param execve(argv[i]) points to uninitialised byte(s)\n==28194==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x4016AB: main (mr2.c:99)\n==28194==  Address 0x5616240 is 0 bytes inside a block of size 8 alloc'd\n==28194==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==28194==    by 0x40159B: main (mr2.c:64)\n==28194== \n==28194== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==28194==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28194==    by 0x4016AB: main (mr2.c:99)\n==28194==  Address 0x2 is not stack'd, malloc'd or (recently) free'd\n==28194== \n==28194== execve(0xfff000386(././mapper_asciicount), 0xffeffde70, 0xfff000088) failed, errno 14\n==28194== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==28194== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==28196== Conditional jump or move depends on uninitialised value(s)\n==28196==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==28196==    by 0x401807: main (mr2.c:163)\n==28196== \n==28196== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==28196==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28196==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28196==    by 0x401807: main (mr2.c:163)\n==28196==  Address 0x6 is not stack'd, malloc'd or (recently) free'd\n==28196== \n==28196== Syscall param execve(argv) points to uninitialised byte(s)\n==28196==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28196==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28196==    by 0x401807: main (mr2.c:163)\n==28196==  Address 0xffeffdec0 is on thread 1's stack\n==28196==  in frame #1, created by execl (???)\n==28196== \n==28196== execve(0xfff00039c(././reducer_sum), 0xffeffde70, 0xfff000088) failed, errno 14\n==28196== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==28196== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==28197== Conditional jump or move depends on uninitialised value(s)\n==28197==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==28197==    by 0x401807: main (mr2.c:163)\n==28197== \n==28197== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==28197==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28197==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28197==    by 0x401807: main (mr2.c:163)\n==28197==  Address 0x6 is not stack'd, malloc'd or (recently) free'd\n==28197== \n==28197== Syscall param execve(argv) points to uninitialised byte(s)\n==28197==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==28197==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==28197==    by 0x401807: main (mr2.c:163)\n==28197==  Address 0xffeffdec0 is on thread 1's stack\n==28197==  in frame #1, created by execl (???)\n==28197== \n==28197== execve(0xfff00039c(././reducer_sum), 0xffeffde70, 0xfff000088) failed, errno 14\n==28197== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==28197== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==28190== \n==28190== HEAP SUMMARY:\n==28190==     in use at exit: 72 bytes in 6 blocks\n==28190==   total heap usage: 12 allocs, 6 frees, 189 bytes allocated\n==28190== \n==28190== 8 bytes in 1 blocks are definitely lost in loss record 1 of 5\n==28190==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==28190==    by 0x40157B: main (mr2.c:62)\n==28190== \n==28190== 8 bytes in 1 blocks are definitely lost in loss record 2 of 5\n==28190==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==28190==    by 0x401586: main (mr2.c:63)\n==28190== \n==28190== 8 bytes in 1 blocks are definitely lost in loss record 3 of 5\n==28190==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==28190==    by 0x40159B: main (mr2.c:64)\n==28190== \n==28190== 16 bytes in 2 blocks are definitely lost in loss record 4 of 5\n==28190==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==28190==    by 0x401519: main (mr2.c:47)\n==28190== \n==28190== LEAK SUMMARY:\n==28190==    definitely lost: 40 bytes in 5 blocks\n==28190==    indirectly lost: 0 bytes in 0 blocks\n==28190==      possibly lost: 0 bytes in 0 blocks\n==28190==    still reachable: 32 bytes in 1 blocks\n==28190==         suppressed: 0 bytes in 0 blocks\n==28190== Reachable blocks (those to which a pointer was found) are not shown.\n==28190== To see them, rerun with: --leak-check=full --show-leak-kinds=all\n==28190== \n==28190== For counts of detected and suppressed errors, rerun with: -v\n==28190== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 2 from 2)\nMemory error"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "description": "Test that shuffler outputs correctly to given files", 
+        "name": "shuffler_memory", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n"
+      }
+    ], 
+    "checksum": "0259c04d686dbccb3ffb718d913882ebdd488905  mr2.c\ncb8a3fca614c37a4c6fe9a50dd34b0dd960bf01b  shuffler.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h", 
+    "revision": "80715"
+  }, 
+  {
+    "timestamp": "2016-04-25 17:00:00.081851", 
+    "testcases": [
+      {
+        "description": "Test splitter is used correctly to feed data to mappers", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "splitter", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test one reducer is used correctly", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "name": "reducer_test", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests that multiple mappers are used", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "test_mapper", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests that mkfifo is used", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "test_mkfifo", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test performance of slow reducer", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "name": "performance_test", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that shuffler outputs correctly to given files", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "shuffler_test_small", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that mr2 print the correct output on a small input with multiple mappers", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "small_input", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that tests mr2 on a large input", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "large_input", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test performance of slow reducer", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "name": "performance_test2", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Memory test for mr2", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nOutput file did not match solution\n==18025== Memcheck, a memory error detector\n==18025== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==18025== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==18025== Command: ././mr2 ././data/input_small.txt ./temp/output.out ././mapper_asciicount ././reducer_sum 2 2\n==18025== \n==18028== Conditional jump or move depends on uninitialised value(s)\n==18028==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x4016AB: main (mr2.c:99)\n==18028== \n==18028== Syscall param execve(argv) points to uninitialised byte(s)\n==18028==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x4016AB: main (mr2.c:99)\n==18028==  Address 0xffeffde98 is on thread 1's stack\n==18028==  in frame #1, created by execl (???)\n==18028== \n==18028== Syscall param execve(argv[i]) points to uninitialised byte(s)\n==18028==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x4016AB: main (mr2.c:99)\n==18028==  Address 0x5616240 is 0 bytes inside a block of size 8 alloc'd\n==18028==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==18028==    by 0x40159B: main (mr2.c:64)\n==18028== \n==18028== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==18028==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18028==    by 0x4016AB: main (mr2.c:99)\n==18028==  Address 0x2 is not stack'd, malloc'd or (recently) free'd\n==18028== \n==18028== execve(0xfff000386(././mapper_asciicount), 0xffeffde70, 0xfff000088) failed, errno 14\n==18028== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==18028== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==18029== Conditional jump or move depends on uninitialised value(s)\n==18029==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x4016AB: main (mr2.c:99)\n==18029== \n==18029== Syscall param execve(argv) points to uninitialised byte(s)\n==18029==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x4016AB: main (mr2.c:99)\n==18029==  Address 0xffeffde98 is on thread 1's stack\n==18029==  in frame #1, created by execl (???)\n==18029== \n==18029== Syscall param execve(argv[i]) points to uninitialised byte(s)\n==18029==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x4016AB: main (mr2.c:99)\n==18029==  Address 0x5616240 is 0 bytes inside a block of size 8 alloc'd\n==18029==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==18029==    by 0x40159B: main (mr2.c:64)\n==18029== \n==18029== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==18029==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18029==    by 0x4016AB: main (mr2.c:99)\n==18029==  Address 0x2 is not stack'd, malloc'd or (recently) free'd\n==18029== \n==18029== execve(0xfff000386(././mapper_asciicount), 0xffeffde70, 0xfff000088) failed, errno 14\n==18029== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==18029== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==18031== Conditional jump or move depends on uninitialised value(s)\n==18031==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==18031==    by 0x401807: main (mr2.c:163)\n==18031== \n==18031== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==18031==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18031==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18031==    by 0x401807: main (mr2.c:163)\n==18031==  Address 0x6 is not stack'd, malloc'd or (recently) free'd\n==18031== \n==18031== Syscall param execve(argv) points to uninitialised byte(s)\n==18031==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18031==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18031==    by 0x401807: main (mr2.c:163)\n==18031==  Address 0xffeffdec0 is on thread 1's stack\n==18031==  in frame #1, created by execl (???)\n==18031== \n==18031== execve(0xfff00039c(././reducer_sum), 0xffeffde70, 0xfff000088) failed, errno 14\n==18031== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==18031== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==18032== Conditional jump or move depends on uninitialised value(s)\n==18032==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==18032==    by 0x401807: main (mr2.c:163)\n==18032== \n==18032== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==18032==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18032==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18032==    by 0x401807: main (mr2.c:163)\n==18032==  Address 0x6 is not stack'd, malloc'd or (recently) free'd\n==18032== \n==18032== Syscall param execve(argv) points to uninitialised byte(s)\n==18032==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==18032==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==18032==    by 0x401807: main (mr2.c:163)\n==18032==  Address 0xffeffdec0 is on thread 1's stack\n==18032==  in frame #1, created by execl (???)\n==18032== \n==18032== execve(0xfff00039c(././reducer_sum), 0xffeffde70, 0xfff000088) failed, errno 14\n==18032== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==18032== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==18025== \n==18025== HEAP SUMMARY:\n==18025==     in use at exit: 72 bytes in 6 blocks\n==18025==   total heap usage: 12 allocs, 6 frees, 189 bytes allocated\n==18025== \n==18025== 8 bytes in 1 blocks are definitely lost in loss record 1 of 5\n==18025==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==18025==    by 0x40157B: main (mr2.c:62)\n==18025== \n==18025== 8 bytes in 1 blocks are definitely lost in loss record 2 of 5\n==18025==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==18025==    by 0x401586: main (mr2.c:63)\n==18025== \n==18025== 8 bytes in 1 blocks are definitely lost in loss record 3 of 5\n==18025==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==18025==    by 0x40159B: main (mr2.c:64)\n==18025== \n==18025== 16 bytes in 2 blocks are definitely lost in loss record 4 of 5\n==18025==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==18025==    by 0x401519: main (mr2.c:47)\n==18025== \n==18025== LEAK SUMMARY:\n==18025==    definitely lost: 40 bytes in 5 blocks\n==18025==    indirectly lost: 0 bytes in 0 blocks\n==18025==      possibly lost: 0 bytes in 0 blocks\n==18025==    still reachable: 32 bytes in 1 blocks\n==18025==         suppressed: 0 bytes in 0 blocks\n==18025== Reachable blocks (those to which a pointer was found) are not shown.\n==18025== To see them, rerun with: --leak-check=full --show-leak-kinds=all\n==18025== \n==18025== For counts of detected and suppressed errors, rerun with: -v\n==18025== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 2 from 2)\nMemory error", 
+        "name": "memory_mapreduce", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test that shuffler outputs correctly to given files", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "shuffler_memory", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "81035", 
+    "checksum": "0259c04d686dbccb3ffb718d913882ebdd488905  mr2.c\ncb8a3fca614c37a4c6fe9a50dd34b0dd960bf01b  shuffler.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h"
+  }, 
+  {
+    "timestamp": "2016-04-25 19:00:00.173612", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "splitter", 
+        "description": "Test splitter is used correctly to feed data to mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "reducer_test", 
+        "description": "Test one reducer is used correctly"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "test_mapper", 
+        "description": "Test that tests that multiple mappers are used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "test_mkfifo", 
+        "description": "Test that tests that mkfifo is used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "performance_test", 
+        "description": "Test performance of slow reducer"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "shuffler_test_small", 
+        "description": "Test that shuffler outputs correctly to given files"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "small_input", 
+        "description": "Test that mr2 print the correct output on a small input with multiple mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "large_input", 
+        "description": "Test that tests mr2 on a large input"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nTest passed", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "performance_test2", 
+        "description": "Test performance of slow reducer"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nOutput file did not match solution\n==12624== Memcheck, a memory error detector\n==12624== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==12624== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==12624== Command: ././mr2 ././data/input_small.txt ./temp/output.out ././mapper_asciicount ././reducer_sum 2 2\n==12624== \n==12627== Conditional jump or move depends on uninitialised value(s)\n==12627==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x4016AB: main (mr2.c:99)\n==12627== \n==12627== Syscall param execve(argv) points to uninitialised byte(s)\n==12627==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x4016AB: main (mr2.c:99)\n==12627==  Address 0xffeffde98 is on thread 1's stack\n==12627==  in frame #1, created by execl (???)\n==12627== \n==12627== Syscall param execve(argv[i]) points to uninitialised byte(s)\n==12627==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x4016AB: main (mr2.c:99)\n==12627==  Address 0x5616240 is 0 bytes inside a block of size 8 alloc'd\n==12627==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12627==    by 0x40159B: main (mr2.c:64)\n==12627== \n==12627== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==12627==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12627==    by 0x4016AB: main (mr2.c:99)\n==12627==  Address 0x2 is not stack'd, malloc'd or (recently) free'd\n==12627== \n==12627== execve(0xfff000386(././mapper_asciicount), 0xffeffde70, 0xfff000088) failed, errno 14\n==12627== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==12627== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==12628== Conditional jump or move depends on uninitialised value(s)\n==12628==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x4016AB: main (mr2.c:99)\n==12628== \n==12628== Syscall param execve(argv) points to uninitialised byte(s)\n==12628==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x4016AB: main (mr2.c:99)\n==12628==  Address 0xffeffde98 is on thread 1's stack\n==12628==  in frame #1, created by execl (???)\n==12628== \n==12628== Syscall param execve(argv[i]) points to uninitialised byte(s)\n==12628==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x4016AB: main (mr2.c:99)\n==12628==  Address 0x5616240 is 0 bytes inside a block of size 8 alloc'd\n==12628==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12628==    by 0x40159B: main (mr2.c:64)\n==12628== \n==12628== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==12628==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12628==    by 0x4016AB: main (mr2.c:99)\n==12628==  Address 0x2 is not stack'd, malloc'd or (recently) free'd\n==12628== \n==12628== execve(0xfff000386(././mapper_asciicount), 0xffeffde70, 0xfff000088) failed, errno 14\n==12628== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==12628== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==12630== Conditional jump or move depends on uninitialised value(s)\n==12630==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==12630==    by 0x401807: main (mr2.c:163)\n==12630== \n==12630== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==12630==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12630==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12630==    by 0x401807: main (mr2.c:163)\n==12630==  Address 0x6 is not stack'd, malloc'd or (recently) free'd\n==12630== \n==12630== Syscall param execve(argv) points to uninitialised byte(s)\n==12630==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12630==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12630==    by 0x401807: main (mr2.c:163)\n==12630==  Address 0xffeffdec0 is on thread 1's stack\n==12630==  in frame #1, created by execl (???)\n==12630== \n==12630== execve(0xfff00039c(././reducer_sum), 0xffeffde70, 0xfff000088) failed, errno 14\n==12630== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==12630== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==12631== Conditional jump or move depends on uninitialised value(s)\n==12631==    at 0x5312C7A: execl (in /usr/lib64/libc-2.17.so)\n==12631==    by 0x401807: main (mr2.c:163)\n==12631== \n==12631== Syscall param execve(argv[i]) points to unaddressable byte(s)\n==12631==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12631==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12631==    by 0x401807: main (mr2.c:163)\n==12631==  Address 0x6 is not stack'd, malloc'd or (recently) free'd\n==12631== \n==12631== Syscall param execve(argv) points to uninitialised byte(s)\n==12631==    at 0x53128B7: execve (in /usr/lib64/libc-2.17.so)\n==12631==    by 0x5312C90: execl (in /usr/lib64/libc-2.17.so)\n==12631==    by 0x401807: main (mr2.c:163)\n==12631==  Address 0xffeffdec0 is on thread 1's stack\n==12631==  in frame #1, created by execl (???)\n==12631== \n==12631== execve(0xfff00039c(././reducer_sum), 0xffeffde70, 0xfff000088) failed, errno 14\n==12631== EXEC FAILED: I can't recover from execve() failing, so I'm dying.\n==12631== Add more stringent tests in PRE(sys_execve), or work out how to recover.\n==12624== \n==12624== HEAP SUMMARY:\n==12624==     in use at exit: 72 bytes in 6 blocks\n==12624==   total heap usage: 12 allocs, 6 frees, 189 bytes allocated\n==12624== \n==12624== 8 bytes in 1 blocks are definitely lost in loss record 1 of 5\n==12624==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12624==    by 0x40157B: main (mr2.c:62)\n==12624== \n==12624== 8 bytes in 1 blocks are definitely lost in loss record 2 of 5\n==12624==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12624==    by 0x401586: main (mr2.c:63)\n==12624== \n==12624== 8 bytes in 1 blocks are definitely lost in loss record 3 of 5\n==12624==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12624==    by 0x40159B: main (mr2.c:64)\n==12624== \n==12624== 16 bytes in 2 blocks are definitely lost in loss record 4 of 5\n==12624==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==12624==    by 0x401519: main (mr2.c:47)\n==12624== \n==12624== LEAK SUMMARY:\n==12624==    definitely lost: 40 bytes in 5 blocks\n==12624==    indirectly lost: 0 bytes in 0 blocks\n==12624==      possibly lost: 0 bytes in 0 blocks\n==12624==    still reachable: 32 bytes in 1 blocks\n==12624==         suppressed: 0 bytes in 0 blocks\n==12624== Reachable blocks (those to which a pointer was found) are not shown.\n==12624== To see them, rerun with: --leak-check=full --show-leak-kinds=all\n==12624== \n==12624== For counts of detected and suppressed errors, rerun with: -v\n==12624== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 2 from 2)\nMemory error", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "memory_mapreduce", 
+        "description": "Memory test for mr2"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "shuffler_memory", 
+        "description": "Test that shuffler outputs correctly to given files"
+      }
+    ], 
+    "checksum": "0259c04d686dbccb3ffb718d913882ebdd488905  mr2.c\ncb8a3fca614c37a4c6fe9a50dd34b0dd960bf01b  shuffler.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h", 
+    "revision": "81556"
+  }
+]

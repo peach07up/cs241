@@ -1,0 +1,51 @@
+[
+  {
+    "timestamp": "2016-04-17 22:00:02.182833", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nData was not split evenly among mappers", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "splitter", 
+        "description": "Test splitter is used correctly to feed data to mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers, with mappers of 0\nUnable to open/read output file", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "small_input", 
+        "description": "Test that mr1 print the correct output on a small input with multiple mappers"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers\nCouldn't open/read output file", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "large_input", 
+        "description": "Test that tests mr1 on a large input"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nUnable to open/read output file", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "reducer_test", 
+        "description": "Test one reducer is used correctly"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nIncorrect number of mappers with mappers of 0", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_mapper", 
+        "description": "Test that tests that multiple mappers are used"
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nCouldn't open/read output files", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "performance_test", 
+        "description": "Test one reducer is used correctly"
+      }
+    ], 
+    "checksum": "7aacf87a504353d93633ab601bc5618860546ddc  mr1.c\nd013c9a3756c3ee9b69fbe294e26e7f5fdf60302  core/common.c\n64e31b82898787e53899b9cac76f6deb32fdafa5  core/common.h", 
+    "revision": "73809"
+  }
+]

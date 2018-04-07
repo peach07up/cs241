@@ -1,0 +1,100 @@
+[
+  {
+    "timestamp": "2016-03-31 20:00:00.109250", 
+    "testcases": [
+      {
+        "description": "\nThis asks the MMU for one physical_address:\n    Checks that the number of page_faults is correct.\n    Checks that the number of page_table_traversals is correct.\n", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nmmu_test: mmu_test.c:15: get_assert_write_address: Assertion `physical_address' failed.\n\n... or you timed out ...", 
+        "name": "test_get_1_address", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "\nThis asks the MMU for one physical_address twice:\n    Checks that the number of page_faults is correct.\n    Checks that the number of page_table_traversalss is correct.\n    Checks that the physical address is persistent.\n", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nmmu_test: mmu_test.c:15: get_assert_write_address: Assertion `physical_address' failed.\n\n... or you timed out ...", 
+        "name": "test_get_address_twice", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "\nThis asks the MMU for 2 physical_address interleaved among each other:\n    Checks that the number of page_faults is correct.\n    Checks that the number of page_table_traversalss is correct.\n    Checks that the physical address is persistent.\n", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nmmu_test: mmu_test.c:15: get_assert_write_address: Assertion `physical_address' failed.\n\n... or you timed out ...", 
+        "name": "test_interleave", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "\nThis test spams get_1_address() a bunch.\n    This is to test if they are taking advantage of the tlb.\n", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nmmu_test: mmu_test.c:15: get_assert_write_address: Assertion `physical_address' failed.\n\n... or you timed out ...", 
+        "name": "test_spam1", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "\nThis tests two processes asking for the same virtual address.\n    Note: the physical addresses should be different.\n", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nmmu_test: mmu_test.c:15: get_assert_write_address: Assertion `physical_address' failed.\n\n... or you timed out ...", 
+        "name": "test_multiprocess", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "\nThis tests if you are effectively using the TLB for the fact that \"all virtual addresses with the same 3 virtual page numbers will map to the same frame in memory\".\nNote that if this test takes too long ... it means you aren't using the tlb enough.\n", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\nmmu_test: mmu_test.c:15: get_assert_write_address: Assertion `physical_address' failed.\n\n... or you timed out ...", 
+        "name": "test_same_vpns_diff_offset", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "60479", 
+    "checksum": "652fbe32fc3f085f956538d56f22f8241793e2b6  mmu.c"
+  }, 
+  {
+    "timestamp": "2016-04-01 04:00:00.644842", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nmmu.c: In function \u2018MMU_get_physical_address\u2019:\nmmu.c:59:18: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int offset = (int)virtual_address & 4095;\n                  ^\nmmu.c:60:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn3 = ((int)virtual_address >> 15) & 4095;\n                 ^\nmmu.c:61:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn2 = ((int)virtual_address >> 27) & 4095;\n                 ^\nmmu.c:62:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n                 ^\nmmu.c:62:5: error: right shift count >= width of type [-Werror]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n     ^\nmmu.c:59:9: error: unused variable \u2018offset\u2019 [-Werror=unused-variable]\n     int offset = (int)virtual_address & 4095;\n         ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/mmu-release.o] Error 1\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_get_1_address", 
+        "description": "\nThis asks the MMU for one physical_address:\n    Checks that the number of page_faults is correct.\n    Checks that the number of page_table_traversals is correct.\n"
+      }, 
+      {
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nmmu.c: In function \u2018MMU_get_physical_address\u2019:\nmmu.c:59:18: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int offset = (int)virtual_address & 4095;\n                  ^\nmmu.c:60:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn3 = ((int)virtual_address >> 15) & 4095;\n                 ^\nmmu.c:61:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn2 = ((int)virtual_address >> 27) & 4095;\n                 ^\nmmu.c:62:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n                 ^\nmmu.c:62:5: error: right shift count >= width of type [-Werror]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n     ^\nmmu.c:59:9: error: unused variable \u2018offset\u2019 [-Werror=unused-variable]\n     int offset = (int)virtual_address & 4095;\n         ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/mmu-release.o] Error 1\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_get_address_twice", 
+        "description": "\nThis asks the MMU for one physical_address twice:\n    Checks that the number of page_faults is correct.\n    Checks that the number of page_table_traversalss is correct.\n    Checks that the physical address is persistent.\n"
+      }, 
+      {
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nmmu.c: In function \u2018MMU_get_physical_address\u2019:\nmmu.c:59:18: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int offset = (int)virtual_address & 4095;\n                  ^\nmmu.c:60:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn3 = ((int)virtual_address >> 15) & 4095;\n                 ^\nmmu.c:61:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn2 = ((int)virtual_address >> 27) & 4095;\n                 ^\nmmu.c:62:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n                 ^\nmmu.c:62:5: error: right shift count >= width of type [-Werror]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n     ^\nmmu.c:59:9: error: unused variable \u2018offset\u2019 [-Werror=unused-variable]\n     int offset = (int)virtual_address & 4095;\n         ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/mmu-release.o] Error 1\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_interleave", 
+        "description": "\nThis asks the MMU for 2 physical_address interleaved among each other:\n    Checks that the number of page_faults is correct.\n    Checks that the number of page_table_traversalss is correct.\n    Checks that the physical address is persistent.\n"
+      }, 
+      {
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nmmu.c: In function \u2018MMU_get_physical_address\u2019:\nmmu.c:59:18: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int offset = (int)virtual_address & 4095;\n                  ^\nmmu.c:60:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn3 = ((int)virtual_address >> 15) & 4095;\n                 ^\nmmu.c:61:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn2 = ((int)virtual_address >> 27) & 4095;\n                 ^\nmmu.c:62:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n                 ^\nmmu.c:62:5: error: right shift count >= width of type [-Werror]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n     ^\nmmu.c:59:9: error: unused variable \u2018offset\u2019 [-Werror=unused-variable]\n     int offset = (int)virtual_address & 4095;\n         ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/mmu-release.o] Error 1\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_spam1", 
+        "description": "\nThis test spams get_1_address() a bunch.\n    This is to test if they are taking advantage of the tlb.\n"
+      }, 
+      {
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nmmu.c: In function \u2018MMU_get_physical_address\u2019:\nmmu.c:59:18: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int offset = (int)virtual_address & 4095;\n                  ^\nmmu.c:60:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn3 = ((int)virtual_address >> 15) & 4095;\n                 ^\nmmu.c:61:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn2 = ((int)virtual_address >> 27) & 4095;\n                 ^\nmmu.c:62:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n                 ^\nmmu.c:62:5: error: right shift count >= width of type [-Werror]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n     ^\nmmu.c:59:9: error: unused variable \u2018offset\u2019 [-Werror=unused-variable]\n     int offset = (int)virtual_address & 4095;\n         ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/mmu-release.o] Error 1\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_multiprocess", 
+        "description": "\nThis tests two processes asking for the same virtual address.\n    Note: the physical addresses should be different.\n"
+      }, 
+      {
+        "log": "Trying to compile your code...\nFAILED TO COMPILE!\nmmu.c: In function \u2018MMU_get_physical_address\u2019:\nmmu.c:59:18: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int offset = (int)virtual_address & 4095;\n                  ^\nmmu.c:60:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn3 = ((int)virtual_address >> 15) & 4095;\n                 ^\nmmu.c:61:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn2 = ((int)virtual_address >> 27) & 4095;\n                 ^\nmmu.c:62:17: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n                 ^\nmmu.c:62:5: error: right shift count >= width of type [-Werror]\n     int vpn1 = ((int)virtual_address >> 39) & 4095;\n     ^\nmmu.c:59:9: error: unused variable \u2018offset\u2019 [-Werror=unused-variable]\n     int offset = (int)virtual_address & 4095;\n         ^\ncc1: all warnings being treated as errors\nmake: *** [.objs/mmu-release.o] Error 1\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "name": "test_same_vpns_diff_offset", 
+        "description": "\nThis tests if you are effectively using the TLB for the fact that \"all virtual addresses with the same 3 virtual page numbers will map to the same frame in memory\".\nNote that if this test takes too long ... it means you aren't using the tlb enough.\n"
+      }
+    ], 
+    "checksum": "0ccde7e406ee549f4d1f61d096a1baeb5c00e673  mmu.c", 
+    "revision": "60758"
+  }
+]

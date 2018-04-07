@@ -1,0 +1,192 @@
+/**
+ * Mad Mad Access Pattern
+ * CS 241 - Spring 2016
+ */
+#include <time.h>
+#include <sys/time.h>
+#include "tree.h"
+#include "utils.h"
+#include "stdio.h"
+#include "string.h"
+/*
+ Look up a few nodes in the tree and print the info they contain.
+ This version uses fseek() and fread() to access the data.
+ 
+ ./lookup1 <data_file> <word> [<word> ...]
+ */
+
+int print_keywords(char *filename, char **keywords, int num_keywords);
+
+int main(int argc, char **argv)
+{
+    // argc is the number of arguments
+    // argv is an array of arguments
+    // There is always 1 argument, the name of the program
+    // So if we have 2 arguments in, argc would be 3, not 2
+    if(argc < 3)
+    {
+        printf("Usage: ./%s <data_file> <keyword> [<keyword> ...]", argv[0]);
+        return 1;
+    }
+    
+    // Initialize the keyword array
+    int num_keywords = argc - 2;
+    char *filename = argv[1];
+    char *keywords[num_keywords];
+    for(int i = 0; i < num_keywords; i++)
+    {
+        keywords[i] = argv[i + 2];
+    }
+    
+    // We also need to time this
+    
+    struct timeval start;
+    gettimeofday(&start, NULL);
+    
+    print_keywords(filename, keywords, num_keywords);
+    
+    struct timeval end;
+    gettimeofday(&end, NULL);
+    
+    double duration = (int)end.tv_sec - (int)start.tv_sec + ((int)end.tv_usec - (int)start.tv_usec) / 10000;
+    
+    printTime(duration);
+}
+
+// size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
+// int fseek ( FILE * stream, long int offset, int origin );
+// int fgetc ( FILE * stream );
+// FILE * fopen ( const char * filename, const char * mode );
+
+int print_keywords(char *filename, char **keywords, int num_keywords)
+{
+    // First let's open the file
+    // We only need read mode
+    FILE *file = fopen(filename, "r");
+    
+    if(file == NULL)
+    {
+        // File can't be opened, error
+        openFail(filename);
+        return 2;
+    }
+    
+    // Now let's make sure this file is valid and has BTRE
+    // We'll make a string, 5 characters long, 4 for BTRE, 1 for the end character
+    char btre[5] = "0000";
+    size_t read_bytes = 0;
+    BinaryTreeNode node;
+    
+    read_bytes = fread(btre, 4, 1, file);
+    if(read_bytes == 1 && strcmp(btre, "BTRE") == 0)
+    {
+        //Ok file is valid, let's keep reading
+        for(int i = 0; i < num_keywords; i++)
+        {
+            // Reset to head for each new keyword
+            fseek(file, 4, SEEK_SET);
+            // Get the keyword we want
+            char *keyword = keywords[i];
+            // Keep looping until we get to the keyword or we get an error
+            while(1)
+            {
+                // 3 ints, 1 float, each 4 bytes. So read 4 bytes 4 times
+                // Luckily, they gave us float and uint32_t which are 4 bytes
+                // instead of int which can be 8. So we can do this simplier
+                // Convert char *buffer into a uint32_t or float pointer
+                // Then dereference it for the value
+                
+                fread(&node.left_child, 4, 1, file);
+                fread(&node.right_child, 4, 1, file);
+                fread(&node.count, 4, 1, file);
+                fread(&node.price, 4, 1, file);
+                
+                // Now we have to read the keyword
+                // We can't use fread because we don't know how long the keyword is
+                // We just keep reading until we get '\0'
+                // So we'll use fgetc to read 1 byte at a time
+                char keyword_buffer[100];
+                int j = 0;
+                while(((keyword_buffer[j] = fgetc(file)) != '\0' || j < 7) && keyword_buffer[j] != EOF)
+                {
+                    j++;
+                    if(j == 100)
+                    {
+                        // This means the keyword is over 100 characters long
+                        // It's probably an error
+                        printf("Over 100\n");
+                        formatFail(filename);
+                        break;
+                    }
+                }
+                
+                printf("Checking Record %d %d %d %f %s\n", node.left_child, node.right_child, node.count, node.price, keyword_buffer);
+                
+                // Ok we have the keyword, let's compare it to what we are searching
+                int cmp = strcmp(keyword, keyword_buffer);
+                
+                // This is what we are searching for
+                if(cmp == 0)
+                {
+                    // Print out count and price here
+                    printFound(keyword, node.count, node.price);
+                    break;
+                }
+                // Check left
+                else if(cmp < 0)
+                {
+                    // As defined in the assignment, 0 means there is nothing there
+                    // So we can't find the keyword
+                    if(node.left_child == 0)
+                    {
+                        printNotFound(keyword);
+                        break;
+                    }
+                    // Jump to the offset specified by left
+                    // SEEK_SET means offset from the beginning, which is what we want
+                    int error = fseek(file, (long int)node.left_child, SEEK_SET);
+                    if(error != 0)
+                    {
+                        // Can't jump to that offset, error
+                        printf("Left Seek Fail\n");
+                        formatFail(filename);
+                        break;
+                    }
+                }
+                // Check right
+                else if(cmp > 0)
+                {
+                    // As defined in the assignment, 0 means there is nothing there
+                    // So we can't find the keyword
+                    if(node.right_child == 0)
+                    {
+                        printNotFound(keyword);
+                        break;
+                    }
+                    // Jump to the offset specified by right
+                    // SEEK_SET means offset from the beginning, which is what we want
+                    int error = fseek(file, (long int)node.right_child, SEEK_SET);
+                    if(error != 0)
+                    {
+                        // Can't jump to that offset, error
+                        printf("Right Seek Fail\n");
+                        formatFail(filename);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        // BTRE not there, error
+        printf("BTRE Fail\n");
+        formatFail(filename);
+        return 2;
+    }
+    
+    // This is at the end
+    // We'll write it now so we don't forget
+    fclose(file);
+    return 0;
+}

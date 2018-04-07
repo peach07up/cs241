@@ -1,0 +1,141 @@
+/**
+ * Chatroom Lab
+ * CS 241 - Spring 2016
+ */
+// gcc client.c -w -std=gnu99 -pthread -o client
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <string.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <signal.h>
+
+#include "chat_window.h"
+#include "utils.h"
+
+#define BUFFER_LENGTH 256
+
+// This is useful
+typedef struct info_t {
+    char *host;
+    char *port;
+    char *username;
+} info_t;
+
+int serverSocket;
+
+struct addrinfo hints, *result;
+pthread_t threads[2];
+void *writeVal, *readVal;
+
+void close_client() {
+    pthread_cancel(threads[0]);
+    pthread_join(threads[0], &writeVal);
+    pthread_cancel(threads[1]);
+    pthread_join(threads[1], &readVal);
+    // BE SURE TO CLOSE THE SOCKET
+    
+}
+
+//Thread that handles Read
+void * readFromServer(void * data){
+    data = NULL;
+    printf("In Read Thread\n");
+    int sockfd = *((int *)data);
+    char buffer[BUFFER_LENGTH];
+    int r;
+    while((r = read(sockfd,buffer,sizeof(buffer)))!=-1){
+        printf("Read: %s\n",buffer);
+        write_message_to_screen("Read: %s\n",buffer);
+    }
+    return NULL;
+}
+
+//Thread that handles Write
+void * writeToServer(void * data){
+    data = NULL;
+    printf("In Write Thread\n");
+    //Read from the user
+    //As per task, could be stdin, but we are using ncurses windows to make it look nice
+    char *buffer = data;
+    while(1){
+        read_message_from_screen(&buffer);
+        write_to_server(buffer);
+    }
+    return NULL;
+    
+}
+
+void *run_client(void *information) {
+    
+    
+    /*Implement run_client()
+     Set up the network connection (TCP + IPv4).
+     Launch threads to read from the server.
+     Launch threads to write to server.
+     */
+    
+    signal(SIGINT, close_client);
+    
+    info_t * info = ( info_t * )information;
+    struct sockaddr_in dest;
+    socklen_t addr_size = 0;
+    
+    bzero(&dest,sizeof(dest));
+    //Open A socket
+    if((serverSocket = socket(AF_INET, SOCK_STREAM,0))<0){
+        perror("Socket Error");
+    }
+    printf("Socket Created\n");
+    
+    
+    //Getting ip from Host??
+    struct hostent *server;
+    server = gethostbyname(info->host);
+    if(server == NULL){
+        perror("Host Name Not Found");
+        exit(1);
+    }
+    //bcopy((char *)server->h_addr,
+    // (char *)&dest.sin_addr.s_addr, server->h_length);
+    //dest.sin_addr = *((struct in_addr *)server->h_addr);
+    dest.sin_addr.s_addr	= INADDR_ANY;
+    dest.sin_family = AF_INET;
+    dest.sin_port = htons(atoi(info->port));
+    
+    //Now Connect to the server
+    if(connect(serverSocket,(struct sockaddr *)&dest,addr_size)!=0){
+        perror("Problem in Connecting");
+    }
+    
+    printf("Connection Established");
+    
+    sleep(10);
+    //Read Thread
+    pthread_create(&threads[0],NULL,read_from_server(),NULL);
+    
+    char buffer[] = "Client";
+    //Write Thread
+    pthread_create(&threads[1],NULL,write_to_server,(void *)buffer);
+    
+    
+    
+    /*QUESTION 1*/
+    /*QUESTION 2*/
+    /*QUESTION 3*/
+    
+    /*QUESTION 4*/
+    /*QUESTION 5*/
+    
+    /*QUESTION 6*/
+    
+    /*QUESTION 7*/
+    
+    // Now that a connection has ben established, we can start sending data to the
+    // server.
+    return 0;
+}
+

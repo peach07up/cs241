@@ -1,0 +1,156 @@
+/**
+ * Machine Problem 1
+ * CS 241 - Spring 2016
+ */
+
+/* An automatically-expanding array of strings. */
+#include "vector.h"
+#include <assert.h>
+#include <string.h>
+#include <stdio.h>
+
+#define INITIAL_CAPACITY 10
+
+void Vector_resize(Vector *vector, size_t new_size);
+void Vector_destroy(Vector *vector);
+
+Vector *Vector_create() {
+    Vector *this = calloc(1, sizeof(Vector));
+    if (!this) return NULL;
+    
+    this->array = NULL;
+    this->size = 0;
+    this->capacity = 0;
+    
+    //if (Vector_resize(this, 10) < 0) {
+      //  Vector_destroy(this);
+       // return NULL;
+    //}
+    
+    return this;
+    // your code here
+  //return NULL;
+}
+
+void Vector_destroy(Vector *vector) {
+    //assert(vector);
+    memset(vector->array, 0, vector->capacity*sizeof(void*) );
+    vector->size = 0;
+    vector->capacity = 0;
+    free(vector->array);
+    free(vector);
+  // your code here
+}
+
+size_t Vector_size(Vector *vector) {
+  //assert(vector);
+    if (!vector){
+        return -1;
+    }
+    return vector->size;
+  // your code here
+  //return 0;
+}
+
+void Vector_resize(Vector *vector, size_t new_size) {
+    //assert(vector);
+    void ** items = realloc(vector->array, new_size * sizeof(void*));
+    if (!items) {
+        return false;
+    }
+    
+    vector->array = items;
+    vector->capacity = new_size;
+    
+    return true;
+  // your code here
+}
+
+void Vector_set(Vector *vector, size_t index, const char *str) {
+    //assert(vector);
+    struct vector *clone = vector_create();
+    if (!clone) {
+        return NULL;
+    }
+    
+    if (clone->capacity < str->size) {
+        if (!vector_resize(clone, str->size)) {
+            vector_destroy(clone);
+            return NULL;
+        }
+    }
+    
+    memcpy(clone->array, str->array, str->size * sizeof(void *));
+    clone->size = str->size;
+    
+    if (vector->size == 0 || index > vector->size - 1) {
+        return NULL;
+    }
+    
+    clone = vector->array[index];
+    vector->array[index] = array;
+    return clone;
+  // your code here
+}
+
+const char *Vector_get(Vector *vector, size_t index) {
+  //assert(vector);
+    if (vector->size == 0 || index > vector->size - 1) {
+        return NULL;
+    }
+    return vector->array[index];
+  // your code here
+  //return NULL;
+}
+
+void Vector_insert(Vector *vector, size_t index, const char *str) {
+  //assert(vector);
+    if (vector->size == 0 || index > vector->size - 1) {
+        return false;
+    }
+    
+    if (vector->size == vector->capacity){
+        if (!vector_resize(vector, vector->capacity * 2)) {
+            return false;
+        }
+    }
+    
+    size_t size = (vector->size - index) * sizeof(void *);
+    memmove(vector->str + index + 1, vector->str + index, size);
+    
+    vector->str[index] = str;
+    vector->size++;
+    
+    return true;
+    // your code here
+}
+
+void Vector_delete(Vector *vector, size_t index) {
+  //assert(vector);
+    if (vector->size == 0 || index > vector->size - 1) {
+        return NULL;
+    }
+    
+    void * result = vector->array[index];
+    
+    if (index < vector->size - 1) {
+        size_t size = (vector->size - index - 1) * sizeof(void *);
+        memmove(vector->array + index, vector->array + index + 1, size);
+    }
+    
+    vector->array[vector->size - 1] = NULL;
+    vector->size--;
+    
+    return result;
+  // your code here, what asserts might you want?
+}
+
+void Vector_append(Vector *vector, const char *str) {
+  //assert(vector);
+    if (vector->size >= vector->capacity) {
+        vector->capacity *= 2;
+        vector->array = realloc(vector->array, sizeof(void *) * vector->capacity);
+    }
+    vector->array[vector->size++] = str;
+  // your code here
+}

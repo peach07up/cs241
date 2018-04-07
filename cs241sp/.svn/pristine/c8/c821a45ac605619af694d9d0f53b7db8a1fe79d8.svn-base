@@ -1,0 +1,481 @@
+/**
+ * Parallel Make
+ * CS 241 - Spring 2016
+ */
+
+#include "parmake.h"
+#include "parser.h"
+#include <pthread.h>
+#include <semaphore.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+// Giving status values constant names helps with clarity
+
+#define NOT_RUN 0
+#define RUNNING 1
+#define RUN 2
+
+// We'll use this to keep track of every rule
+// We have whether or not this target has run already
+// The actual target name
+// Whether or not that target is a file
+// The modification time of the file if it is
+// A queue of dependencies that is a queue of pointers to other targets
+// A queue of dependents that is a queue of pointers to other targets that are dependent on this target
+// A queue of dependencies that are files, not targets. We'll only use this if
+// the current target is a file
+// A queue of commands that is a queue of strings with the commands to run
+// How many of the dependencies have run already
+
+struct queue_node {
+    void *item;              ///<Stored value
+    struct queue_node *next; ///<Link to next node
+};
+
+typedef struct {
+    struct queue_node *head; ///<Head of linked-list
+    struct queue_node *tail; ///<Tail of linked-list
+    size_t size;             ///<Number of nodes in linked-list
+} queue_t;
+
+typedef struct
+{
+    int run;
+    char *target;
+    int is_file;
+    time_t file_mod_time;
+    queue_t dependencies;
+    queue_t dependents;
+    queue_t files;
+    queue_t commands;
+    int dependencies_cleared;
+} target_t;
+
+void queue_init(queue_t *q) {
+    q->head = NULL;
+    q->tail = NULL;
+    q->size = 0;
+}
+
+size_t queue_size(queue_t *q) { return q->size; }
+
+void queue_enqueue(queue_t *q, void *item) {
+    struct queue_node *back = malloc(sizeof(struct queue_node));
+    
+    back->item = item;
+    back->next = NULL;
+    if (queue_size(q) == 0) {
+        q->head = back;
+    } else {
+        q->tail->next = back;
+    }
+    q->tail = back;
+    q->size++;
+}
+
+void *queue_dequeue(queue_t *q) {
+    struct queue_node *front;
+    void *item;
+    
+    if (queue_size(q) == 0) {
+        return NULL;
+    }
+    
+    front = q->head;
+    q->head = q->head->next;
+    q->size--;
+    
+    item = front->item;
+    free(front);
+    
+    if (queue_size(q) == 0) {
+        // just cleaning up
+        q->head = NULL;
+        q->tail = NULL;
+    }
+    
+    return item;
+}
+
+void queue_destroy(queue_t *q) {
+    while (queue_size(q) > 0) {
+        queue_dequeue(q);
+    }
+}
+
+// There are many ways to approach designing more complex programs
+// One way is data structure orientated. We'll define how we store all
+// the information we'll use for the program.
+// Then we decide how we will use the stored information to perform the
+// necessary actions
+//
+// For this target_t struct. We'll fill it in by using the provided
+// parser_parse_makefile function to call 3 different functions
+// The first will be parsed_new_target, where we will fill in the target name
+// We will also check to see if its a filename and fill in is_file
+// If the target is not in the targets list already, we'll create the target_t
+// struct and add it. Otherwise we'll fill in the already made one.
+// A struct could be already made because of below, where we add struct for
+// every dependency.
+//
+// Then parsed_new_dependency will be run by parser_parse_makefile and we'll
+// get a list of dependecy names. We'll check the queue to see if they exist
+// If they do, we'll add a pointer to it in dependencies.
+// Otherwise we'll create a new target_t structure and add it to the targets list
+// We'll also go into that dependencies and add a pointer to the current target so they are doubly linked
+// If the new dependency is a file rather than a target, we'll use the files queue instead
+//
+// Finally the parsed_new_command function will be called and we'll fill in
+// the strings with the commands in the commands queue
+
+
+
+// Ok now we have our targets queue filled out.
+// It has all the information we need to run, so we'll launch a bunch of threads
+// and have them get a target from the queue.
+//
+// Once it has, it'll follow this list of steps, based off the flowchart
+// given by the assignment:
+//
+// 1. Use a mutex to protect the queue
+// 2. Go through the queue and find the first target that hasn't been run yet or is currently running
+// 3. We'll check the size of the dependencies queue with the dependencies_cleared variable to see if this target has all its dependencies run already
+// 4. If the dependencies are not all run yet, we'll go to the next target
+// 4a. If we checked everything, we'll wait on a semaphore variable
+// 5. If they are run, we'll set the run variable to a currently_running state
+//    and unlock the mutex
+// 6. Next we'll check if this is a filename and get its modification time with
+//    the linux function stat() if it is
+// 7. Finally we'll go through every file dependency in the file queue and check
+//    the modification times to see if any are newer
+// 8. If any are newer, or there are no file dependencies, then we'll run the
+//    commands in the commands queue with the linux function system()
+// 9. Then we'll try to lock the queue mutex, update dependencies_cleared on
+//    every target in the dependents queue and update the run variable then
+//    signal the semaphore variable for other threads to start looking for
+//    targets to run again if any target in the dependents queue has all their
+//    dependencies_cleared
+//
+//    The semaphore is being used exactly like a condition variable, except it remembers signals if there is nothing waiting so the next
+//    thread that waits will run immediately
+
+void *parrun();
+target_t *new_target(char *target);
+void parsed_new_target(char *target);
+void parsed_new_dependency(char *target, char *dependency);
+void parsed_new_command(char *target, char *command);
+
+queue_t targets;
+int run_targets = 0;
+pthread_mutex_t mt = PTHREAD_MUTEX_INITIALIZER;
+sem_t sem;
+
+// Treat this as main
+int parmake(int argc, char **argv) {
+    int opt;
+    char *makefile = NULL;
+    int num_threads = 0;
+    char **run_targets;
+    pthread_t *threads;
+    
+    // Init
+    queue_init(&targets);
+    sem_init(&sem, 0, 0);
+    
+    // We'll be using getopt, it's a bit complicated, look at the getopt wikipedia page for instructions
+    // I'll explain it to you in person if you need it
+    while((opt = getopt(argc, argv, "f:j:")) != -1)
+    {
+        switch(opt)
+        {
+            case 'f':
+                makefile = optarg;
+                break;
+            case 'j':
+                num_threads = atoi(optarg);
+                break;
+            default:
+                return -1;
+        }
+    }
+    
+    if(makefile == NULL || num_threads == 0)
+    {
+        return 0;
+    }
+    
+    printf("Makefile %s, Num Threads %d\n", makefile, num_threads);
+    
+    run_targets = malloc((argc - optind) * sizeof(char *));
+    
+    for(int i = optind; i < argc; i++)
+    {
+        printf("Added Target %s\n", argv[i]);
+        run_targets[i - optind] = argv[i];
+    }
+    
+    // We'll use the provided parser_parse_makefile function with 3 callbacks
+    parser_parse_makefile(makefile, run_targets, parsed_new_target, parsed_new_dependency, parsed_new_command);
+    
+    // Launch the threads
+    threads = malloc(sizeof(pthread_t) * num_threads);
+    
+    for(int i = 0; i < num_threads; i++)
+    {
+        pthread_create(&threads[i], NULL, parrun, NULL);
+    }
+    for(int i = 0; i < num_threads; i++)
+    {
+        pthread_join(threads[i], NULL);
+    }
+    
+    // Free all the memory and destroy all the queues
+    free(run_targets);
+    free(threads);
+    
+    struct queue_node *node = NULL;
+    node = targets.head;
+    while(node != NULL)
+    {
+        target_t *target = node->item;
+        queue_destroy(&(target->dependencies));
+        queue_destroy(&(target->dependents));
+        queue_destroy(&(target->files));
+        queue_destroy(&(target->commands));
+        free(target);
+        node->item = NULL;
+        node = node->next;
+    }
+    
+    queue_destroy(&targets);
+    
+    return 0;
+}
+
+// This is a handy function, give it a target name
+// It'll either find the target in the targets queue and return it
+// Or create a brand new target_t struct, initialize it, add it to the targets queue
+// and then return it
+target_t *new_target(char *target)
+{
+    // Search the targets queue for a target struct with target
+    struct queue_node *node = NULL;
+    target_t *tar = NULL;
+    
+    node = targets.head;
+    
+    printf("Targets Queue Size %d\n", (int)targets.size);
+    
+    while(node != NULL)
+    {
+        tar = node->item;
+        printf("Comparing %s to Queue Item %s\n", target, tar->target);
+        if(strcmp(tar->target, target) == 0)
+        {
+            // Found, return the target and do no more work
+            printf("Target Found\n");
+            return tar;
+        }
+        node = node->next;
+    }
+    
+    // Target not found, intitialize it
+    printf("Allocating Target %s\n", target);
+    tar = malloc(sizeof(target_t));
+    tar->run = NOT_RUN;
+    tar->target = target;
+    tar->is_file = 0;
+    tar->dependencies_cleared = 0;
+    
+    // Use the stat function to check if its a file
+    // stat() returns 0 if its a valid file and the stat struct gives us info
+    struct stat buf;
+    if(stat(target, &buf) == 0)
+    {
+        tar->is_file = 1;
+        // The st_mtime value in the stat struct is the modification time
+        tar->file_mod_time = buf.st_mtime;
+    }
+    
+    // Setup all the queues used in target_t
+    queue_init(&(tar->dependencies));
+    queue_init(&(tar->dependents));
+    queue_init(&(tar->files));
+    queue_init(&(tar->commands));
+    printf("Allocated Target %s\n", tar->target);
+    
+    // Add this target_t struct into the targets queue
+    queue_enqueue(&targets, tar);
+    printf("Added %s to Queue with %s\n", tar->target, ((target_t *)targets.tail->item)->target);
+    
+    return tar;
+}
+
+void parsed_new_target(char *target)
+{
+    // When we get a new target, we just run new_target()
+    new_target(target);
+}
+
+void parsed_new_dependency(char *target, char *dependency)
+{
+    // Run new target on target and dependency
+    // If they exist, we get the pointer
+    // If they don't, it creates them, adds them to the queue
+    // and gives us the pointer
+    target_t *tar = new_target(target);
+    target_t *dep = new_target(dependency);
+    
+    // Dependency goes in files queue if its a file, in dependencies queue if its not
+    // And if its not a file, we also add target into Dependency's dependents queue
+    if(dep->is_file)
+    {
+        queue_enqueue(&(tar->files), dep);
+    }
+    else
+    {
+        queue_enqueue(&(tar->dependencies), dep);
+        queue_enqueue(&(dep->dependents), tar);
+    }
+}
+
+void parsed_new_command(char *target, char *command)
+{
+    // Just add the command into the target's command queue
+    target_t *tar = new_target(target);
+    queue_enqueue(&(tar->commands), command);
+}
+
+void *parrun()
+{
+    struct queue_node *node = NULL;
+    target_t *target = NULL;
+    target_t *other = NULL;
+    char *command = NULL;
+    int run_commands = 1;
+    
+    while(1)
+    {
+        while(target == NULL)
+        {
+            // Step 1
+            pthread_mutex_lock(&mt);
+            // Check to see if we are actually just finished
+            if(run_targets >= (int)targets.size)
+            {
+                // Extra unlock to make sure we don't get stuck at the end
+                pthread_mutex_unlock(&mt);
+                sem_post(&sem);
+                return NULL;
+            }
+            
+            node = targets.head;
+            
+            // Step 2
+            while(node != NULL)
+            {
+                target = node->item;
+                printf("Checking Target %s\n", target->target);
+                // Step 2
+                if(target->run == NOT_RUN)
+                {
+                    // Step 3
+                    if(target->dependencies_cleared >= (int)target->dependencies.size)
+                    {
+                        // Step 5
+                        target->run = RUNNING;
+                        printf("Running Target %s\n", target->target);
+                        break;
+                    }
+                }
+                // Step 4
+                printf("Target %s Not Run\n", target->target);
+                node = node->next;
+            }
+            // Step 5
+            pthread_mutex_unlock(&mt);
+            
+            // If node is NULL, it means we looped through the entire targets queue and never found a runnable target
+            // So wait until we get the signal to check again
+            
+            if(node == NULL)
+            {
+                // Step 4a
+                target = NULL;
+                printf("Not Targets Available, Waiting\n");
+                sem_wait(&sem);
+            }
+        }
+        
+        // Step 6
+        if(target->is_file)
+        {
+            printf("Target is File\n");
+            run_commands = 0;
+            // Step 7
+            node = target->files.head;
+            
+            while(node != NULL)
+            {
+                other = node->item;
+                // Step 7
+                if(other->file_mod_time > target->file_mod_time)
+                {
+                    // It only matters if there is at least 1 that is newer
+                    run_commands = 1;
+                    break;
+                }
+                node = node->next;
+            }
+        }
+        
+        // Step 8
+        if(run_commands)
+        {
+            node = target->commands.head;
+            
+            while(node != NULL)
+            {
+                command = node->item;
+                printf("Running Command %s\n", command);
+                system(command);
+                node = node->next;
+            }
+        }
+        
+        // Step 9
+        pthread_mutex_lock(&mt);
+        target->run = RUN;
+        node = target->dependents.head;
+        
+        while(node != NULL)
+        {
+            other = node->item;
+            other->dependencies_cleared++;
+            
+            if(other->dependencies_cleared >= (int)other->dependencies.size)
+            {
+                sem_post(&sem);
+            }
+            
+            node = node->next;
+        }
+        
+        run_targets++;
+        
+        if(run_targets >= (int)targets.size)
+        {
+            // Extra unlock to make sure we don't get stuck at the end
+            sem_post(&sem);
+            return NULL;
+        }
+        pthread_mutex_unlock(&mt);
+    }
+}
+

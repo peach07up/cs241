@@ -1,0 +1,162 @@
+/**
+ * MapReduce
+ * CS 241 - Spring 2016
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <string.h>
+#include "common.h"
+
+void usage() {
+    printf("./mr1 input_file output_file mapper_exec reducer_exec num_mappers\n");
+}
+
+int main(int argc, char **argv) {
+    // Create an input pipe for each mapper.
+    
+    // Create one input pipe for the reducer.
+    
+    // Open the output file.
+    
+    // Start a splitter process for each mapper.
+    
+    // Start all the mapper processes.
+    
+    // Start the reducer process.
+    
+    // Wait for the reducer to finish.
+    
+    // Print nonzero subprocess exit codes.
+    
+    // Count the number of lines in the output file.
+    
+    // Number of arguments wrong, print usage and exit
+    if(argc != 6)
+    {
+        usage();
+        return 0;
+    }
+    
+    // Get the arguments
+    char *input = argv[1];
+    int output = open(argv[2], O_RDWR | O_CLOEXEC | O_CREAT | O_TRUNC, S_IRWXU);
+    char *mapper = argv[3];
+    char *reducer = argv[4];
+    int num_mappers = atoi(argv[5]);
+    
+    // Make the Pipes
+    int **pipes = malloc(sizeof(int) * 2  * num_mappers);
+    for(int i = 0; i < num_mappers; i++)
+    {
+        pipes[i] = malloc(sizeof(int) * 2);
+        pipe2(pipes[i], O_CLOEXEC);
+        descriptors_add(pipes[i][0]);
+        descriptors_add(pipes[i][1]);
+    }
+    int pipe[2];
+    
+    pipe2(pipe, O_CLOEXEC);
+    descriptors_add(pipe[0]);
+    descriptors_add(pipe[1]);
+    
+    // Use the provided descriptors_add function to keep track of all our
+    // open files
+    descriptors_add(output);
+    
+    pid_t *splitter_pids = malloc(sizeof(pid_t) * num_mappers);
+    pid_t *mapper_pids = malloc(sizeof(pid_t) * num_mappers);
+    
+    for(int i = 0; i < num_mappers; i++)
+    {
+        splitter_pids[i] = fork();
+        
+        if(splitter_pids[i] == 0)
+        {
+            // Mapper Write to Stdout
+            dup2(pipes[i][1], 1);
+            
+            descriptors_closeall();
+            
+            char *nm = malloc(sizeof(char) * 10);
+            sprintf(nm, "%d", num_mappers);
+            char *is = malloc(sizeof(char) * 10);
+            sprintf(is, "%d", i);
+            printf("Arg 1 %s Arg 2 %s Arg 3 %s\n", input, nm, is);
+            execl("./splitter", "splitter", input, nm, is);
+        }
+    }
+    
+    for(int i = 0; i < num_mappers; i++)
+    {
+        mapper_pids[i] = fork();
+        
+        if(mapper_pids[i] == 0)
+        {
+            // Mapper Read to Stdin
+            dup2(pipes[i][0], 0);
+            
+            // Reducer Write to Stdou
+            dup2(pipe[1], 1);
+            
+            descriptors_closeall();
+            
+            execl(mapper, mapper);
+        }
+    }
+    
+    pid_t reducer_pid = fork();
+    
+    if(reducer_pid == 0)
+    {
+        dup2(pipe[0], 0);
+        dup2(output, 1);
+        
+        descriptors_closeall();
+        
+        execl(reducer, reducer);
+    }
+    
+    // Close all the descriptors, we've passed them to the processes so we
+    // don't need them here anymore
+    descriptors_closeall();
+    
+    int status = 0;
+    for(int i = 0; i < num_mappers; i++)
+    {
+        waitpid(splitter_pids[i], &status, 0);
+        if(WIFEXITED(status))
+        {
+            if(WEXITSTATUS(status) != 0)
+            {
+                printf("splitter exited with status %d\n", (int)WEXITSTATUS(status));
+            }
+        }
+        
+        waitpid(mapper_pids[i], &status, 0);
+        if(WIFEXITED(status))
+        {
+            if(WEXITSTATUS(status) != 0)
+            {
+                printf("%s exited with status %d\n", mapper, (int)WEXITSTATUS(status));
+            }
+        }
+    }
+    waitpid(reducer_pid, &status, 0);
+    if(WIFEXITED(status))
+    {
+        if(WEXITSTATUS(status) != 0)
+        {
+            printf("%s exited with status %d\n", reducer, (int)WEXITSTATUS(status));
+        }
+    }
+    
+    // Free the memory
+    descriptors_destroy();
+    
+    return 0;
+}
+

@@ -1,0 +1,8 @@
+-- Grading dumb.c --
+dumb.c exists
+dumb.c compiles
+ERROR: dumb.c ran without error
+hw0.pdf has not been submitted!
+-- Total Score --
+dumb.c		:	0.0
+hw0.pdf		:	0.0

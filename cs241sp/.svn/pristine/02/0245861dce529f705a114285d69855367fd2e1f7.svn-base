@@ -1,0 +1,152 @@
+/**
+ * Ideal Indirection Lab
+ * CS 241 - Spring 2016
+ */
+#include <stdio.h>
+#include "stdint.h"
+#include "mmu.h"
+#include "kernel.h"
+
+MMU *MMU_create() {
+    MMU *mmu = calloc(1, sizeof(MMU));
+    PageTable **base_pts = mmu->base_pts;
+    for (size_t i = 0; i < MAX_PROCESS_ID; i++) {
+        base_pts[i] = PageTable_create();
+    }
+    mmu->tlb = TLB_create();
+    return mmu;
+}
+
+
+// void MMU_tlb_miss(MMU *mmu, void *address, size_t pid)
+// void MMU_raise_page_fault(MMU *mmu, void *address, size_t pid)
+// void *TLB_get_physical_address(TLB **head, void *key, size_t pid)
+// void TLB_add_physical_address(TLB **head, void *key, size_t pid, void *value)
+// void *PageTable_get_entry(PageTable *pt, size_t index)
+// void PageTable_set_entry(PageTable *pt, size_t index, void *entry)
+// void *ask_kernel_for_frame()
+// PageTable *PageTable_create();
+
+
+/*
+ |-------------|------------|------------|------------|---------------|
+ UNUSED (13)    VPN1 (12)    VPN2 (12)    VPN3 (12)    Offset (15)
+ */
+
+// 1. We want to split this address into its parts, VPN1, VPN2, VPN3 and Offset
+// 2. VPN1 refers to the first PageTable, so we'll do PageTable_get_entry(PageTable1, VPN1)
+// 3. That will return us a reference to PageTable2. We'll keep doing this until we get to PageTable3
+// 4. Once we get the return value from PageTable3, we have the actual memory frame
+// 5. Now we just do MemoryFrame + offset, and we have the address value we want to return
+
+// What if PageTable_get_entry gives us NULL?
+// 1. If PageTable1 or PageTable2 gives us NULL, we need to create a new page table
+// 2. Use PageTable_create to create PageTable2 or PageTable3 depending on if PageTable1 or 2 was NULL
+// 3. If PageTable3 gives us NULL, we have a page fault.
+// 4. Call MMU_raise_page_fault
+// 5. Call ask_kernel_for_frame for the new page frame
+// 6. Set PageTable3's VPN3 address to go to the new page frame with PageTable_set_entry
+
+// What do we do with TLB?
+// 1. Before we do #1 in line 35:
+// 2. Check TLB_get_physical_address with the virtual address
+// 3. If it's there, skip all the steps and just use that
+// 4. If it's not there, call MMU_tlb_miss
+// 5. Finally right before we finish, we'll store MemoryFrame + offset in the TLB with TLB_add_physical_address
+
+
+void *MMU_get_physical_address(MMU *mmu, void *virtual_address, size_t pid) {
+    // Split address into parts
+    int offset = (uintptr_t)virtual_address & 32767;
+    int vpn3 = ((uintptr_t)virtual_address >> 15) & 4095;
+    int vpn2 = ((uintptr_t)virtual_address >> 27) & 4095;
+    int vpn1 = ((uintptr_t)virtual_address >> 39) & 4095;
+    
+    uintptr_t tlb_key = virtual_address >> 15;
+    
+    // Check TLB Addresses
+    void *tlb_address = TLB_get_physical_address(&(mmu->tlb), tlb_key, pid);
+    
+    if(tlb_address != NULL)
+    {
+        // Address in TLB, return that fast and finish
+        return tlb_address + offset;
+    }
+    
+    // Address not in TLB, signal miss
+    MMU_tlb_miss(mmu, virtual_address, pid);
+    
+    // Check first PageTable
+    // The first PageTable is in array, 1 each for each process
+    PageTable *pagetable2 = PageTable_get_entry(mmu->base_pts[pid], (size_t)vpn1);
+    
+    // Check if it gave us NULL
+    if(pagetable2 == NULL)
+    {
+        MMU_raise_page_fault(mmu, virtual_address, pid);
+        // PageTable2 does not exist, let's create it
+        pagetable2 = PageTable_create();
+        // And put it back into PageTable2
+        PageTable_set_entry(mmu->base_pts[pid], (size_t)vpn1, pagetable2);
+    }
+    
+    // Now do the same for PageTable2 and 3
+    
+    PageTable *pagetable3 = PageTable_get_entry(pagetable2, (size_t)vpn2);
+    if(pagetable3 == NULL)
+    {
+        MMU_raise_page_fault(mmu, virtual_address, pid);
+        // PageTable2 does not exist, let's create it
+        pagetable3 = PageTable_create();
+        // And put it back into PageTable2
+        PageTable_set_entry(pagetable2, (size_t)vpn2, pagetable3);
+    }
+    
+    // Now let's check for the actual address
+    
+    void *address = PageTable_get_entry(pagetable3, (size_t)vpn3);
+    
+    // If this is NULL, we have a pagefault
+    if(address == NULL)
+    {
+        MMU_raise_page_fault(mmu, virtual_address, pid);
+        // Assignment tell's us to assign a new page frame to it
+        address = ask_kernel_for_frame();
+        PageTable_set_entry(pagetable3, (size_t)vpn3, address);
+    }
+    address += offset;
+    
+    // Now let's update the TLB
+    TLB_add_physical_address(&(mmu->tlb), tlb_key, pid, address);
+    
+    return address;
+}
+
+void MMU_tlb_miss(MMU *mmu, void *address, size_t pid) {
+    mmu->num_tlb_misses++;
+    //printf("Process [%lu] tried to access [%p] and it couldn't find it in the "
+    "TLB so the MMU has to check the PAGE TABLES\n",
+    pid, address);
+}
+
+void MMU_raise_page_fault(MMU *mmu, void *address, size_t pid) {
+    mmu->num_page_faults++;
+    //printf(
+    "Process [%lu] tried to access [%p] and the MMU got an invalid entry\n",
+    pid, address);
+}
+
+void MMU_free_process_tables(MMU *mmu, size_t pid) {
+    PageTable *base_pt = mmu->base_pts[pid];
+    Pagetable_delete_tree(base_pt);
+}
+
+void MMU_delete(MMU *mmu) {
+    for (size_t i = 0; i < MAX_PROCESS_ID; i++) {
+        MMU_free_process_tables(mmu, i);
+    }
+    TLB_delete(mmu->tlb);
+    free(mmu);
+}
+
+

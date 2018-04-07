@@ -1,0 +1,207 @@
+[
+  {
+    "timestamp": "2016-02-16 04:04:29.801788", 
+    "testcases": [
+      {
+        "description": "Test with program that has no memory leaks.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "no_leak", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has memory leaks.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "leak", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has bad frees.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "bad_free", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has a variety of issues.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "full", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has a variety of issues (but under valgrind now).\nNote that you had to get the full_test correct to pass this one as well.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==31468== Memcheck, a memory error detector\n==31468== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==31468== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==31468== Command: ././full_test\n==31468== \n==31468== Invalid write of size 8\n==31468==    at 0x400711: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==31468==  Address 0x0 is not stack'd, malloc'd or (recently) free'd\n==31468== \n==31468== \n==31468== Process terminating with default action of signal 11 (SIGSEGV)\n==31468==  Access not within mapped region at address 0x0\n==31468==    at 0x400711: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==31468==  If you believe this happened as a result of a stack\n==31468==  overflow in your program's main thread (unlikely but\n==31468==  possible), you can try to increase the size of the\n==31468==  main thread stack using the --main-stacksize= flag.\n==31468==  The main thread stack size used in this run was 8388608.\n==31468== \n==31468== HEAP SUMMARY:\n==31468==     in use at exit: 0 bytes in 0 blocks\n==31468==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated\n==31468== \n==31468== All heap blocks were freed -- no leaks are possible\n==31468== \n==31468== For counts of detected and suppressed errors, rerun with: -v\n==31468== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 2 from 2)\n", 
+        "name": "memory", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "(Pull Time: 2016-02-18 | Revision # 23306)"
+  }, 
+  {
+    "timestamp": "2016-02-16 16:03:59.938887", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "no_leak", 
+        "description": "Test with program that has no memory leaks."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "leak", 
+        "description": "Test with program that has memory leaks."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "bad_free", 
+        "description": "Test with program that has bad frees."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "full", 
+        "description": "Test with program that has a variety of issues."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==15744== Memcheck, a memory error detector\n==15744== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==15744== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==15744== Command: ././full_test\n==15744== \n==15744== Invalid write of size 8\n==15744==    at 0x400711: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==15744==  Address 0x0 is not stack'd, malloc'd or (recently) free'd\n==15744== \n==15744== \n==15744== Process terminating with default action of signal 11 (SIGSEGV)\n==15744==  Access not within mapped region at address 0x0\n==15744==    at 0x400711: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==15744==  If you believe this happened as a result of a stack\n==15744==  overflow in your program's main thread (unlikely but\n==15744==  possible), you can try to increase the size of the\n==15744==  main thread stack using the --main-stacksize= flag.\n==15744==  The main thread stack size used in this run was 8388608.\n==15744== \n==15744== HEAP SUMMARY:\n==15744==     in use at exit: 0 bytes in 0 blocks\n==15744==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated\n==15744== \n==15744== All heap blocks were freed -- no leaks are possible\n==15744== \n==15744== For counts of detected and suppressed errors, rerun with: -v\n==15744== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 2 from 2)\n", 
+        "ptsEarned": 0.0, 
+        "ptsPossible": 1.0, 
+        "name": "memory", 
+        "description": "Test with program that has a variety of issues (but under valgrind now).\nNote that you had to get the full_test correct to pass this one as well."
+      }
+    ], 
+    "revision": "(Pull Time: 2016-02-18 | Revision # 23306)"
+  }, 
+  {
+    "timestamp": "2016-02-16 17:24:03.749901", 
+    "testcases": [
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test with program that has no memory leaks.", 
+        "name": "no_leak", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test with program that has memory leaks.", 
+        "name": "leak", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\naddress was stored wrong.\ntotal_usage is incorrect.\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test with program that has bad frees.", 
+        "name": "bad_free", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test with program that has a variety of issues.", 
+        "name": "full", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n"
+      }, 
+      {
+        "ptsPossible": 1.0, 
+        "ptsEarned": 0.0, 
+        "description": "Test with program that has a variety of issues (but under valgrind now).\nNote that you had to get the full_test correct to pass this one as well.", 
+        "name": "memory", 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==2002== Memcheck, a memory error detector\n==2002== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==2002== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==2002== Command: ././full_test\n==2002== \n==2002== Invalid free() / delete / delete[] / realloc()\n==2002==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x4008C3: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==  Address 0x51f60e0 is 160 bytes inside a block of size 200 alloc'd\n==2002==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400B7D: mini_malloc (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x400834: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002== \n==2002== Invalid free() / delete / delete[] / realloc()\n==2002==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x4008DD: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==  Address 0x51f60e0 is 160 bytes inside a block of size 200 alloc'd\n==2002==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400B7D: mini_malloc (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x400834: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002== \n==2002== Invalid free() / delete / delete[] / realloc()\n==2002==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x4008F7: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==  Address 0x51f60e0 is 160 bytes inside a block of size 200 alloc'd\n==2002==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400B7D: mini_malloc (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x400834: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002== \n==2002== Invalid free() / delete / delete[] / realloc()\n==2002==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400911: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==  Address 0x51f60e0 is 160 bytes inside a block of size 200 alloc'd\n==2002==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400B7D: mini_malloc (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x400834: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002== \n==2002== Invalid free() / delete / delete[] / realloc()\n==2002==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x40092B: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==  Address 0x51f60e0 is 160 bytes inside a block of size 200 alloc'd\n==2002==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400B7D: mini_malloc (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x400834: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002== \n==2002== Invalid free() / delete / delete[] / realloc()\n==2002==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400963: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==  Address 0x51f61f0 is 160 bytes inside a block of size 180 alloc'd\n==2002==    at 0x4C29BFD: malloc (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==2002==    by 0x400B7D: mini_malloc (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x40089F: main (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002== \n==2002== Conditional jump or move depends on uninitialised value(s)\n==2002==    at 0x400992: ag_check (in /home/btruong2/code/cs241/autograder2/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==2002==    by 0x4E56AF4: (below main) (in /usr/lib64/libc-2.17.so)\n==2002== \naddress was stored wrong.\nMore than one element in the list.\ntotal_usage is incorrect.\ntotal_free is incorrect.\nbad_frees is incorrect.\n==2002== \n==2002== HEAP SUMMARY:\n==2002==     in use at exit: 0 bytes in 0 blocks\n==2002==   total heap usage: 3 allocs, 9 frees, 544 bytes allocated\n==2002== \n==2002== All heap blocks were freed -- no leaks are possible\n==2002== \n==2002== For counts of detected and suppressed errors, rerun with: -v\n==2002== Use --track-origins=yes to see where uninitialised values come from\n==2002== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 2 from 2)\n"
+      }
+    ], 
+    "revision": "(Pull Time: 2016-02-18 | Revision # 23763)"
+  }, 
+  {
+    "timestamp": "2016-02-17 04:03:55.440299", 
+    "testcases": [
+      {
+        "description": "Test with program that has no memory leaks.", 
+        "ptsEarned": 1.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "name": "no_leak", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has memory leaks.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\naddress was stored wrong.\n", 
+        "name": "leak", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has bad frees.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "bad_free", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has a variety of issues.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n", 
+        "name": "full", 
+        "ptsPossible": 1.0
+      }, 
+      {
+        "description": "Test with program that has a variety of issues (but under valgrind now).\nNote that you had to get the full_test correct to pass this one as well.", 
+        "ptsEarned": 0.0, 
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==1205== Memcheck, a memory error detector\n==1205== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==1205== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==1205== Command: ././full_test\n==1205== \n==1205== Invalid free() / delete / delete[] / realloc()\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x4008DD: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205==  Address 0x51f6040 is 0 bytes inside a block of size 200 free'd\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x4008C3: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205== \n==1205== Invalid free() / delete / delete[] / realloc()\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x4008F7: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205==  Address 0x51f6040 is 0 bytes inside a block of size 200 free'd\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x4008C3: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205== \n==1205== Invalid free() / delete / delete[] / realloc()\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x400911: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205==  Address 0x51f6040 is 0 bytes inside a block of size 200 free'd\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x4008C3: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205== \n==1205== Invalid free() / delete / delete[] / realloc()\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x40092B: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205==  Address 0x51f6040 is 0 bytes inside a block of size 200 free'd\n==1205==    at 0x4C2AD17: free (in /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so)\n==1205==    by 0x4008C3: main (in /home/btruong2/code/cs241/autograder/lab/mini_valgrind/svn/pliu15/mini_valgrind/full_test)\n==1205== \naddress was stored wrong.\n==1205== \n==1205== HEAP SUMMARY:\n==1205==     in use at exit: 0 bytes in 0 blocks\n==1205==   total heap usage: 3 allocs, 7 frees, 544 bytes allocated\n==1205== \n==1205== All heap blocks were freed -- no leaks are possible\n==1205== \n==1205== For counts of detected and suppressed errors, rerun with: -v\n==1205== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 2 from 2)\n", 
+        "name": "memory", 
+        "ptsPossible": 1.0
+      }
+    ], 
+    "revision": "(Pull Time: 2016-02-18 | Revision # 24371)"
+  }, 
+  {
+    "timestamp": "2016-02-18 00:04:36.437440", 
+    "testcases": [
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "no_leak", 
+        "description": "Test with program that has no memory leaks."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "leak", 
+        "description": "Test with program that has memory leaks."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "bad_free", 
+        "description": "Test with program that has bad frees."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "full", 
+        "description": "Test with program that has a variety of issues."
+      }, 
+      {
+        "log": "Trying to compile your code...\nSuccessfully compiled your code..\n==1944== Memcheck, a memory error detector\n==1944== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.\n==1944== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info\n==1944== Command: ././full_test\n==1944== \n==1944== \n==1944== HEAP SUMMARY:\n==1944==     in use at exit: 0 bytes in 0 blocks\n==1944==   total heap usage: 3 allocs, 3 frees, 544 bytes allocated\n==1944== \n==1944== All heap blocks were freed -- no leaks are possible\n==1944== \n==1944== For counts of detected and suppressed errors, rerun with: -v\n==1944== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)\n", 
+        "ptsPossible": 1.0, 
+        "ptsEarned": 1.0, 
+        "name": "memory", 
+        "description": "Test with program that has a variety of issues (but under valgrind now).\nNote that you had to get the full_test correct to pass this one as well."
+      }
+    ], 
+    "revision": "(Pull Time: 2016-02-18 | Revision # 25322)"
+  }
+]
